@@ -34,8 +34,7 @@ public class Player : MonoBehaviour
 
         DefaultSpeed = Speed;
     }
-
-    void Update()
+    void FixedUpdate()
     {
         //移動
         moveX = Input.GetAxis("Horizontal") * Speed;
