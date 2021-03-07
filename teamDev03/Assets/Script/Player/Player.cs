@@ -11,7 +11,11 @@ public class Player : MonoBehaviour
     private float DefaultSpeed;//初期移動量
     float moveX = 0f;
     float moveZ = 0f;
-    
+
+    //回転の速さ
+    [SerializeField] GameObject Head;
+    [SerializeField] float AngleSpeed = 6.0f;
+
     //ジャンプ
     private Vector3 Jump;//ジャンプ
     [SerializeField] float JumpPower;//ジャンプ力
@@ -34,13 +38,20 @@ public class Player : MonoBehaviour
 
         DefaultSpeed = Speed;
     }
+
     void FixedUpdate()
     {
         //移動
         moveX = Input.GetAxis("Horizontal") * Speed;
         moveZ = Input.GetAxis("Vertical") * Speed;
-        Move = new Vector3(moveX, 0, moveZ);
+        Move = Head.transform.rotation * new Vector3(moveX, 0, moveZ);
         characterController.SimpleMove(Move);
+
+
+        //回転
+        Vector3 angle = new Vector3(0, Input.GetAxis("Mouse X") * AngleSpeed, 0);
+        Head.transform.Rotate(angle);
+
 
         //ジャンプ
         if (characterController.isGrounded)//地面についているか
