@@ -217,6 +217,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &324002733
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +378,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 --- !u!1 &329426201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865007824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.37, y: -1.6, z: 16.7}
+  m_LocalPosition: {x: 31.4, y: -1.6, z: 11.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1576,7 +1579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875283235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.4, y: -1.6, z: 16.7}
+  m_LocalPosition: {x: 14, y: -1.6, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1898,7 +1901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046711660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: -1.6, z: -8.53}
+  m_LocalPosition: {x: 12.92, y: -1.6, z: -5.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1981,7 +1984,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116912661}
-  m_LocalRotation: {x: 0.16442202, y: -0.5163202, z: 0.10175761, w: 0.83428067}
+  m_LocalRotation: {x: 0.16442202, y: -0.5163202, z: 0.10175761, w: 0.8342807}
   m_LocalPosition: {x: 4.8991985, y: 2.3309946, z: -0.891031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2606,7 +2609,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456409564}
-  m_LocalRotation: {x: 0.17654495, y: -0.5147848, z: 0.10926027, w: 0.8317997}
+  m_LocalRotation: {x: 0.17654495, y: -0.51478475, z: 0.10926025, w: 0.83179975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3814,7 +3817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089201054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.37, y: -1.6, z: -8.53}
+  m_LocalPosition: {x: 31.3, y: -1.6, z: -6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4011,4 +4014,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d288ff71269b7e45bab7ac024790d00, type: 3}
+<<<<<<< HEAD
+>>>>>>> main
+=======
+--- !u!1001 &8071326509160396347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021135, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071326509484021141, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: points.Array.data[0]
+      value: 
+      objectReference: {fileID: 1046711661}
+    - target: {fileID: 8071326509484021141, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: points.Array.data[1]
+      value: 
+      objectReference: {fileID: 2089201055}
+    - target: {fileID: 8071326509484021141, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: points.Array.data[2]
+      value: 
+      objectReference: {fileID: 865007825}
+    - target: {fileID: 8071326509484021141, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: points.Array.data[3]
+      value: 
+      objectReference: {fileID: 875283236}
+    - target: {fileID: 8071326509484021142, guid: 6f6399eaa0edf824ca7a656d7899c10f,
+        type: 3}
+      propertyPath: m_Name
+      value: Boss
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f6399eaa0edf824ca7a656d7899c10f, type: 3}
 >>>>>>> main
