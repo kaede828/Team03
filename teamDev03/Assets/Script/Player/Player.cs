@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         //ジャンプ
         if (characterController.isGrounded)//地面についているか
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 //ジャンプ
                 Jump.y = JumpPower;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         //回避
         if (characterController.isGrounded)//地面についていたら
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 Avert = true;
             }
