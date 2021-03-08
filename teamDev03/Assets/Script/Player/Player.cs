@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     float moveX = 0f;
     float moveZ = 0f;
 
+    private Vector3 LastPos;//最後の場所
+
     //回転の速さ
     [SerializeField] GameObject Head;
     [SerializeField] float AngleSpeed = 6.0f;
@@ -47,10 +49,21 @@ public class Player : MonoBehaviour
         Move = Head.transform.rotation * new Vector3(moveX, 0, moveZ);
         characterController.SimpleMove(Move);
 
-
-        //回転
+        //進行方向の回転
         Vector3 angle = new Vector3(0, Input.GetAxis("Mouse X") * AngleSpeed, 0);
         Head.transform.Rotate(angle);
+
+        //どこからどこに進んだか
+        Vector3 diff = transform.position - LastPos;   
+        //最後の場所を更新
+        LastPos = transform.position;  
+
+        //ベクトルの大きさが0.01以上の時に向きを変える
+        if (diff.magnitude > 0.01f)
+        {
+            transform.rotation = Quaternion.LookRotation(diff);
+        }
+
 
 
         //ジャンプ
@@ -58,11 +71,13 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Jump.y = JumpPower;//ジャンプ
+                //ジャンプ
+                Jump.y = JumpPower;
             }
         }
-        Jump.y += Physics.gravity.y * Time.deltaTime;//重力
-        characterController.Move(Jump * Time.deltaTime); //move方向に動かす
+        //重力
+        Jump.y += Physics.gravity.y * Time.deltaTime;
+        characterController.Move(Jump * Time.deltaTime);
 
         //回避
         if (characterController.isGrounded)//地面についていたら

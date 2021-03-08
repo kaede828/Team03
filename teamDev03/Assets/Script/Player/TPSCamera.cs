@@ -10,15 +10,15 @@ public class TPSCamera : MonoBehaviour
     void Update()
     {
 
-        //カメラを移動
+        //カメラをプレイヤーの場所に移動
         transform.position = Player.transform.position;
+       
 
         //プレイヤーの向いている方向にカメラを向ける
         transform.rotation = Player.transform.rotation;
 
         //位置を調整
         transform.Translate(Default);
-
         //プレイヤー方向にカメラを向ける
         transform.LookAt(Player.transform);
     }
