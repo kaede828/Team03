@@ -15,11 +15,12 @@ public class Player : MonoBehaviour
     private Vector3 LastPos;//最後の場所
 
     //回転の速さ
-    [SerializeField] GameObject Head;
+    [SerializeField] GameObject Camera;
     [SerializeField] float AngleSpeed = 6.0f;
 
     //ジャンプ
     private Vector3 Jump;//ジャンプ
+    bool JumpFlag = false;
     [SerializeField] float JumpPower;//ジャンプ力
 
     //回避
@@ -31,12 +32,17 @@ public class Player : MonoBehaviour
     //体力
     static public int HP;
 
+    //アニメーション
+    private Animator animator;
+    private const string key_isRun = "isRun";//フラグの名前
+    private const string key_isJump = "isJump";
 
     CharacterController characterController;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        this.animator = GetComponent<Animator>();
 
         DefaultSpeed = Speed;
     }
@@ -46,17 +52,28 @@ public class Player : MonoBehaviour
         //移動
         moveX = Input.GetAxis("Horizontal") * Speed;
         moveZ = Input.GetAxis("Vertical") * Speed;
-        Move = Head.transform.rotation * new Vector3(moveX, 0, moveZ);
+        Move = Camera.transform.rotation * new Vector3(moveX, 0, moveZ);
         characterController.SimpleMove(Move);
+
+        if(Input.GetAxis("Horizontal")==0 && Input.GetAxis("Vertical") == 0)
+        {
+            this.animator.SetBool(key_isRun, false);
+        }
+        else
+        {
+            this.animator.SetBool(key_isRun, true);
+        }
+        
 
         //進行方向の回転
         Vector3 angle = new Vector3(0, Input.GetAxis("Mouse X") * AngleSpeed, 0);
-        Head.transform.Rotate(angle);
+        Camera.transform.Rotate(angle);
 
         //どこからどこに進んだか
-        Vector3 diff = transform.position - LastPos;   
+        Vector3 diff = transform.position - LastPos;
+        diff = new Vector3(diff.x, 0, diff.z);
         //最後の場所を更新
-        LastPos = transform.position;  
+        LastPos = transform.position;
 
         //ベクトルの大きさが0.01以上の時に向きを変える
         if (diff.magnitude > 0.01f)
@@ -66,14 +83,26 @@ public class Player : MonoBehaviour
 
 
 
+
         //ジャンプ
         if (characterController.isGrounded)//地面についているか
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 //ジャンプ
-                Jump.y = JumpPower;
+                //Jump.y = JumpPower;
+                this.animator.SetBool(key_isJump, true);
+                
             }
+            else
+            {
+                this.animator.SetBool(key_isJump, false);
+            }
+            JumpFlag = false;
+        }
+        else
+        {
+            JumpFlag = true;
         }
         //重力
         Jump.y += Physics.gravity.y * Time.deltaTime;
