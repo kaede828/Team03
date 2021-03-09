@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     //移動
     private Vector3 Move;//移動
+    bool MovePossible;//移動可能か
     [SerializeField] float Speed;//移動量
     private float DefaultSpeed;//初期移動量
     float moveX = 0f;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private const string key_isRun = "isRun";//フラグの名前
     private const string key_isJump = "isJump";
+    private const string key_isAvert = "isAvert";
 
     CharacterController characterController;
 
@@ -55,7 +57,8 @@ public class Player : MonoBehaviour
         Move = Camera.transform.rotation * new Vector3(moveX, 0, moveZ);
         characterController.SimpleMove(Move);
 
-        if(Input.GetAxis("Horizontal")==0 && Input.GetAxis("Vertical") == 0)
+
+        if (Input.GetAxis("Horizontal")==0 && Input.GetAxis("Vertical") == 0)
         {
             this.animator.SetBool(key_isRun, false);
         }
@@ -114,6 +117,11 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Avert = true;
+                this.animator.SetBool(key_isAvert, true);
+            }
+            else
+            {
+                this.animator.SetBool(key_isAvert, false);
             }
         }
 
