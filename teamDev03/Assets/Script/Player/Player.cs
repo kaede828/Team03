@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         
 
         //進行方向の回転
-        Vector3 angle = new Vector3(0, Input.GetAxis("Mouse X") * AngleSpeed, 0);
+        Vector3 angle = new Vector3(0, Input.GetAxis("HorizontalRight") * AngleSpeed, 0);
         Camera.transform.Rotate(angle);
 
         //どこからどこに進んだか
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         //ジャンプ
         if (characterController.isGrounded)//地面についているか
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown("joystick button 0"))
             {
                 //ジャンプ
                 //Jump.y = JumpPower;
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
         //回避
         if (characterController.isGrounded)//地面についていたら
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown("joystick button 2"))
             {
                 Avert = true;
                 this.animator.SetBool(key_isAvert, true);
