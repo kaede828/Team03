@@ -33,9 +33,8 @@ public class Player : MonoBehaviour
     static public int HP;
 
     //攻撃
-    //右手の判定
-    [SerializeField] GameObject RightHand;
-    private Collider RightHandCollider;
+    [SerializeField] GameObject Attack;
+    private Collider AttackCollider;
 
     //アニメーション
     private Animator animator;
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         //右手取得
-        RightHandCollider = RightHand.GetComponent<SphereCollider>();
+        AttackCollider = Attack.GetComponent<BoxCollider>();
         this.animator = GetComponent<Animator>();
 
         DefaultSpeed = Speed;
@@ -146,18 +145,18 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown("joystick button 1"))
             {
-                //this.animator.SetTrigger(key_isAttack);
+                this.animator.SetTrigger(key_isAttack);
                 //右手の当たり判定を有効化
-                RightHandCollider.enabled = true;
+                AttackCollider.enabled = true;
 
                 //一定時間後にコライダーの機能をオフにする
-                Invoke("ColliderReset", 0.3f);
+                Invoke("ColliderReset", 0.2f);
             }
         }
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
     {
-        RightHandCollider.enabled = false;
+        AttackCollider.enabled = false;
     }
 }
