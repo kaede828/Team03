@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     //　出現させる敵を入れておく
-    [SerializeField] EnemyMove enemy;
+    [SerializeField] GameObject enemy;
     //　次に敵が出現するまでの時間
     [SerializeField] float appearNextTime;
     //　この場所から出現する敵の数

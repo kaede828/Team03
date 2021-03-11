@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c457ace5474cb439038e8c250aa595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1583334915462681946, guid: 5bbd433115b6f604a9b00bea13a5716e, type: 3}
+  enemy: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   appearNextTime: 5
   maxNumOfEnemys: 3
 --- !u!4 &862272844
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c457ace5474cb439038e8c250aa595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1583334915462681946, guid: 5bbd433115b6f604a9b00bea13a5716e, type: 3}
+  enemy: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   appearNextTime: 5
   maxNumOfEnemys: 2
 --- !u!4 &1149664646
@@ -2070,7 +2070,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15074
+  m_Name: pb_Mesh52938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
