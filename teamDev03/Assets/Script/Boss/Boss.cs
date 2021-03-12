@@ -195,7 +195,7 @@ public class Boss : MonoBehaviour
         agent.speed = 0;
         elapsedTime += Time.deltaTime;
         flag = true;
-        BoxDrawStart();
+        //BoxDrawStart();
         if (flag)
         {
             transform.Rotate(rot);
@@ -206,7 +206,7 @@ public class Boss : MonoBehaviour
             flag = false;
             aiCount = 1;
             elapsedTime = 0;
-            BoxDrawEnd();
+            //BoxDrawEnd();
         }
     }
 
