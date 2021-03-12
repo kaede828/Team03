@@ -10,6 +10,8 @@ public class State : MonoBehaviour
     public GameObject boss;
     public GameObject attack;
 
+    public SpawnerScript spawner;
+
     private MeshRenderer mesh;
     private BoxCollider col;
     private MeshRenderer attackMesh;
@@ -35,6 +37,7 @@ public class State : MonoBehaviour
         col = boss.GetComponent<BoxCollider>();
         attackMesh = attack.GetComponent<MeshRenderer>();
         attackCol = attack.GetComponent<BoxCollider>();
+
     }
 
     // Update is called once per frame
@@ -52,6 +55,8 @@ public class State : MonoBehaviour
                 col.enabled = false;
                 attackMesh.enabled = false;
                 attackCol.enabled = false;
+                //スポナーをアクティブにする
+                spawner.SpawnTrue();
                 break;
 
             case Game_Type.dreame:
@@ -62,6 +67,10 @@ public class State : MonoBehaviour
                 col.enabled = true;
                 attackMesh.enabled = true;
                 attackCol.enabled = true;
+                //夢に移行するときにスポナーからすべての敵を消滅させる
+                spawner.DestroyEnemy();
+                //スポナーから敵が出現しないよう設定
+                spawner.SpawnFalse();
                 break;
 
             case Game_Type.interval:
