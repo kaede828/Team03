@@ -30,8 +30,11 @@ public class Player : MonoBehaviour
     float Timer;
 
     //体力
-    public int HP=100;
+    public int MaxHP = 300;
+    public int HP;
     [SerializeField] Image image;
+    [SerializeField] Text HPtext;
+    [SerializeField] Text MaxHPtext;
 
     //攻撃
     [SerializeField] GameObject Attack1;
@@ -43,6 +46,12 @@ public class Player : MonoBehaviour
     public int Point;
     private string PointT;
     [SerializeField] Text PointText; // Textオブジェクト
+
+    //強化メニュー
+    [SerializeField] GameObject PowerUpMenu;
+    [SerializeField] GameObject RCursor;
+    [SerializeField] GameObject GCursor;
+    int SelectNum;
 
     //アニメーション
     private Animator animator;
@@ -63,8 +72,9 @@ public class Player : MonoBehaviour
         this.animator = GetComponent<Animator>();
 
         DefaultSpeed = Speed;
+        PowerUpMenu.SetActive(false);
 
-        
+        HP = MaxHP;
     }
 
     void FixedUpdate()
@@ -216,7 +226,53 @@ public class Player : MonoBehaviour
                 Attack4.SetActive(true);
                 Attack3.SetActive(false);
                 break;
-        }       
+        }
+
+
+        //メニュー        
+        if (Input.GetKey("joystick button 4"))
+        { PowerUpMenu.SetActive(true); }
+        else
+        { PowerUpMenu.SetActive(false);}
+
+        //メニューが表示されていたら
+        if(PowerUpMenu.activeSelf==true)
+        {
+            ////D-Pad　なぜか逆
+            //float dph = Input.GetAxis("D_PAD_H");
+            //float dpv = Input.GetAxis("D_PAD_V");
+            //if ((dph != 0) || (dpv != 0))
+            //{
+            //    Debug.Log("D Pad:" + dph + "," + dpv);
+            //}
+            switch (SelectNum)
+            {
+                case 0:
+                    //体力上限アップ
+                    if (Point >= 500)
+                    {
+                        if (Input.GetKeyDown("joystick button 1"))
+                        {
+                            MaxHP += 50;
+                            HP += 50;
+                            Point -= 500;
+                        }
+                        GCursor.SetActive(true);
+                        RCursor.SetActive(false);                     
+                    }
+                    else
+                    {
+                        GCursor.SetActive(false);
+                        RCursor.SetActive(true);
+                    }
+                                   
+                    break;
+            }           
+        }
+
+        //HP表示
+        MaxHPtext.text= MaxHP.ToString();
+        HPtext.text = HP.ToString();
 
     }
     //攻撃の当たり判定を消す
@@ -233,12 +289,10 @@ public class Player : MonoBehaviour
         if (collider.gameObject.tag == "EnemyAttack")
         {
             HP -= 10;
-            image.fillAmount = HP / 100.0f;
+            image.fillAmount = HP / MaxHP;
             this.animator.SetTrigger(key_isDamage);
         }
 
     }
-
-
     
 }
