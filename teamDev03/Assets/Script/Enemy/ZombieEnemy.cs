@@ -57,6 +57,10 @@ public class ZombieEnemy : MonoBehaviour
     [SerializeField]
     private SphereCollider sphereCollider;
 
+    //追加
+    GameObject Player;
+    Player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,11 +69,16 @@ public class ZombieEnemy : MonoBehaviour
         TargetObject = GameObject.Find("Player");
         //初めは待機状態
         SetState(EnemyState.Wait);
+
+        //追加
+        Player = GameObject.Find("Player");
+        player = Player.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //ダメージを受けてエネミーステートがすでにだめーじじゃなかったら
         if (isDamage&& state != EnemyState.Damege)
         {
@@ -139,6 +148,7 @@ public class ZombieEnemy : MonoBehaviour
                 //攻撃をくらった後にHpが0以下なら消す
                 if (enemyHp <= 0)
                 {
+                    player.Point += 50;
                     Destroy(this.gameObject);
                 }
                 else
@@ -263,5 +273,4 @@ public class ZombieEnemy : MonoBehaviour
             sphereCollider.enabled = false;
         }
     }
-
 }

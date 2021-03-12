@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -30,13 +31,28 @@ public class Player : MonoBehaviour
     float Timer;
 
     //体力
-    static public int HP;
+    public int MaxHP = 300;
+    public int HP;
+    [SerializeField] Image HPimage;
+    [SerializeField] Text HPtext;
+    [SerializeField] Text MaxHPtext;
 
     //攻撃
     [SerializeField] GameObject Attack1;
     [SerializeField] GameObject Attack2;
     [SerializeField] GameObject Attack3;
     [SerializeField] GameObject Attack4;
+
+    //強化ポイント
+    public int Point;
+    private string PointT;
+    [SerializeField] Text PointText; // Textオブジェクト
+
+    //強化メニュー
+    [SerializeField] GameObject PowerUpMenu;
+    [SerializeField] GameObject RCursor;
+    [SerializeField] GameObject GCursor;
+    int SelectNum;
 
     //アニメーション
     private Animator animator;
@@ -57,12 +73,16 @@ public class Player : MonoBehaviour
         this.animator = GetComponent<Animator>();
 
         DefaultSpeed = Speed;
+        PowerUpMenu.SetActive(false);
 
-        
+        HP = MaxHP;
     }
 
     void FixedUpdate()
     {
+        PointT = Point.ToString();
+        PointText.text = PointT;
+
         // アニメーションの情報取得
         clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         // 再生中のクリップ名
@@ -205,17 +225,68 @@ public class Player : MonoBehaviour
                 break;
             case 7:
                 Attack4.SetActive(true);
+                Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
                 break;
-        }       
+        }
+
+
+        //メニュー        
+        if (Input.GetKey("joystick button 4"))
+        { PowerUpMenu.SetActive(true); }
+        else
+        { PowerUpMenu.SetActive(false);}
+
+        //メニューが表示されていたら
+        if(PowerUpMenu.activeSelf==true)
+        {
+            ////D-Pad　なぜか逆
+            //float dph = Input.GetAxis("D_PAD_H");
+            //float dpv = Input.GetAxis("D_PAD_V");
+            //if ((dph != 0) || (dpv != 0))
+            //{
+            //    Debug.Log("D Pad:" + dph + "," + dpv);
+            //}
+            switch (SelectNum)
+            {
+                case 0:
+                    //体力上限アップ
+                    if (Point >= 500)
+                    {
+                        if (Input.GetKeyDown("joystick button 1"))
+                        {
+                            MaxHP += 50;
+                            HP += 50;
+                            Point -= 500;
+                        }
+                        GCursor.SetActive(true);
+                        RCursor.SetActive(false);                     
+                    }
+                    else
+                    {
+                        GCursor.SetActive(false);
+                        RCursor.SetActive(true);
+                    }
+                                   
+                    break;
+            }           
+        }
+
+        //HP表示
+        MaxHPtext.text= MaxHP.ToString();
+        HPtext.text = HP.ToString();
+
+        //プレイヤー脂肪
+        if(HP<=0)
+        {
+            SceneManager.LoadScene("Ending");
+        }
 
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
     {
-
         Attack4.SetActive(false);
-
     }
 
     //ダメージ
@@ -223,9 +294,11 @@ public class Player : MonoBehaviour
     {
         if (collider.gameObject.tag == "EnemyAttack")
         {
-            HP -= 1;
+            HP -= 30;
+            HPimage.fillAmount =(float) HP/ MaxHP;
             this.animator.SetTrigger(key_isDamage);
         }
 
     }
+    
 }

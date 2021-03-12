@@ -1735,7 +1735,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1782,6 +1782,7 @@ MonoBehaviour:
   enemyHp: 3
   state: 0
   isAttack: 0
+  isDamage: 0
   sphereCollider: {fileID: 3471038796692042811}
 --- !u!136 &5440294778569213336
 CapsuleCollider:
@@ -2203,7 +2204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7608662014454291329}
   - component: {fileID: 3471038796692042811}
-  - component: {fileID: 2641109326550262606}
   m_Layer: 0
   m_Name: EnemyAttack
   m_TagString: EnemyAttack
@@ -2238,18 +2238,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2641109326550262606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561163891758797520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f4d032d10a5774897bc6b78f509fa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6711833190598148216
 GameObject:
   m_ObjectHideFlags: 0
