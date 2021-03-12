@@ -8,14 +8,14 @@ public class Boss : MonoBehaviour
     public Transform[] points;
     [SerializeField] int destPoint = 0;
     private NavMeshAgent agent;
-    private Rigidbody rigidbody;
-
+    Player p;
     Vector3 playerPos;
-    GameObject player;
+    public GameObject player;
     float distance;
     public int Hp;
-    public bool flag;
-    public Vector3 rot;
+    public bool isAttack;
+    public bool isDamage;
+    public float damage;
     bool aflag;
     //　経過時間
     private float elapsedTime;
@@ -26,38 +26,39 @@ public class Boss : MonoBehaviour
     //攻撃時間
     public float attackTime = 1.5f;
     public float attackTime2 = 1.5f;
+
+    private Animator anima;
     [SerializeField] float trackingRange = 3f;
     [SerializeField] float quitRange = 5f;
     [SerializeField] float stopDistance = 1.5f;
     [SerializeField] float moveDistance = 5f;
     [SerializeField] bool tracking = false;
+    [SerializeField] static bool siyaflag = false;
 
     [SerializeField]
     private BoxCollider boxCollider1;
     [SerializeField]
-    private MeshRenderer mesh1;
+    private GameObject siya;
+    //[SerializeField]
+    //private MeshRenderer mesh1;
 
     void Start()
     {
-
+        p = GetComponent<Player>();
         Hp = 100;
         agent = GetComponent<NavMeshAgent>();
-        rigidbody = GetComponent<Rigidbody>();
         elapsedTime = 0;
-        rot = new Vector3();
         aiCount = 1;
         // autoBraking を無効にすると、目標地点の間を継続的に移動します
         //(つまり、エージェントは目標地点に近づいても
         // 速度をおとしません)
         agent.autoBraking = false;
-        flag = false;
         aflag = false;
-
-        BoxDrawEnd();
+        anima = GetComponent<Animator>();
         //GotoNextPoint();
 
         //追跡したいオブジェクトの名前を入れる
-        player = GameObject.Find("Player");
+        //player = GameObject.Find("Player");
     }
 
 
@@ -97,7 +98,19 @@ public class Boss : MonoBehaviour
                 break;
 
         }
+        if(isDamage)
+        {
 
+            elapsedTime = 0;
+            Hp -= 1;
+            anima.SetBool("Attack",false);
+            anima.SetBool("Walk",false);
+            anima.SetBool("Idle",false);
+            anima.SetTrigger("Damge");
+            aiCount = 1;
+        }
+
+        isAttack = false;
     }
 
     void OnDrawGizmosSelected()
@@ -114,6 +127,8 @@ public class Boss : MonoBehaviour
     #region ボス移動
     void Move()
     {
+        anima.SetBool("Run", false);
+        anima.SetBool("Walk", true);
         //Playerとこのオブジェクトの距離を測る
         playerPos = player.transform.position;
         distance = Vector3.Distance(this.transform.position, playerPos);
@@ -127,13 +142,13 @@ public class Boss : MonoBehaviour
                 elapsedTime = 0;
             }
             //追跡の時、quitRangeより距離が離れたら中止
-            if (distance > quitRange)
+            if (Player.BossAttack()==false)
                 tracking = false;
         }
         else
         {
             //PlayerがtrackingRangeより近づいたら追跡開始
-            if (distance < trackingRange)
+            if (Player.BossAttack())
             {
                 aiCount = 2;
                 tracking = true;
@@ -155,6 +170,8 @@ public class Boss : MonoBehaviour
     #region フリーズ
     void Freeze()
     {
+        anima.SetBool("Walk", false);
+        anima.SetBool("Idle", true);
         // 補完スピードを決める
         float speed = 0.1f;
         // ターゲット方向のベクトルを取得
@@ -176,6 +193,8 @@ public class Boss : MonoBehaviour
 
     void Attack()
     {
+        anima.SetBool("Idle", false);
+        anima.SetBool("Run", true);
         elapsedTime += Time.deltaTime;
         Vector3 vec = playerPos - this.transform.position;
         vec.Normalize();
@@ -191,34 +210,66 @@ public class Boss : MonoBehaviour
 
     void Attack2()
     {
-        rot.y += 50 * Time.deltaTime;
-        agent.speed = 0;
-        elapsedTime += Time.deltaTime;
-        flag = true;
-        //BoxDrawStart();
-        if (flag)
+        agent.SetDestination(playerPos);
+        if (isAttack)
         {
-            transform.Rotate(rot);
+            AttackStart();
+                anima.SetBool("Attack", true);
         }
+        elapsedTime += Time.deltaTime;
         if (elapsedTime > attackTime2)
         {
-            rot = new Vector3(0, 0, 0);
-            flag = false;
+            AttackEnd();
             aiCount = 1;
             elapsedTime = 0;
-            //BoxDrawEnd();
+        }
+    }
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.name == "Attackable")
+        {
+            isAttack = false;
+        }
+        if (collider.gameObject.tag == "PlayerAttack")
+        {
+            isDamage = false;
         }
     }
 
-    void BoxDrawStart()
+    void OnTriggerStay(Collider collider)
     {
-        boxCollider1.enabled = true;
-        mesh1.enabled = true;
-        //mesh2.enabled = true;
+        //エネミーがプレイヤーを攻撃できる範囲にいるか
+        if (collider.gameObject.name == "Attackable")
+        {
+            isAttack = true;
+        }
+        if (collider.gameObject.name == "Siya")
+        {
+            siyaflag = true;
+        }
     }
-    void BoxDrawEnd()
+
+    //エネミーがダメージを受けたか
+    void OnTriggerEnter(Collider collider)
     {
-        boxCollider1.enabled = false;
-        mesh1.enabled = false;
+        if (collider.gameObject.tag == "PlayerAttack")
+        {
+            isDamage = true;
+        }
+
+    }
+
+    void AttackStart()
+    {
+        //攻撃する時に当たり判定をオンにする
+        boxCollider1.enabled = true;
+    }
+
+    void AttackEnd()
+    {
+        if (boxCollider1.enabled == true)
+        {
+            boxCollider1.enabled = false;
+        }
     }
 }
