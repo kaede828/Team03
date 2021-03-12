@@ -75,23 +75,28 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime <= 60)
+        if (gameTime >= 0 && gameTime <= 60)
         {
             type = Game_Type.real;
             Debug.Log("現実");
         }
 
-        if (gameTime >= 60)
+        if (gameTime >= 60 && gameTime <= 120)
         {
             type = Game_Type.dreame;
             Debug.Log("夢");
         }
 
-        if (gameTime >= 120)
+        if (gameTime >= 120 && gameTime <= 180)
         {
             type = Game_Type.interval;
             Debug.Log("狭間");
+        }
+
+        if (gameTime >= 180)
+        {
             gameTime = 0;
         }
+
     }
 }
