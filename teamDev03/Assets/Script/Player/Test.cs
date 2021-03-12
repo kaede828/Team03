@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField] Player player;
+    GameObject Player;
+    Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.Find("Player");
+        player = Player.GetComponent<Player>();
     }
 
     // Update is called once per frame
