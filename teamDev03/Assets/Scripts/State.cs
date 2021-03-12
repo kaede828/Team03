@@ -14,7 +14,6 @@ public class State : MonoBehaviour
 
     private SkinnedMeshRenderer mesh;
     private BoxCollider col;
-    private MeshRenderer attackMesh;
     private BoxCollider attackCol;
 
     public static bool matFlag1;
@@ -38,7 +37,6 @@ public class State : MonoBehaviour
         gameTime = 0;
         mesh = boss.GetComponent<SkinnedMeshRenderer>();
         col = boss.GetComponent<BoxCollider>();
-        attackMesh = attack.GetComponent<MeshRenderer>();
         attackCol = attack.GetComponent<BoxCollider>();
 
     }
@@ -56,7 +54,6 @@ public class State : MonoBehaviour
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = false;
                 col.enabled = false;
-                attackMesh.enabled = false;
                 attackCol.enabled = false;
                 break;
 
@@ -66,8 +63,7 @@ public class State : MonoBehaviour
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = true;
                 col.enabled = true;
-                attackMesh.enabled = true;
-                attackCol.enabled = true;
+                //attackCol.enabled = true;
                 for (int i = 0; i < spawner.Length; i++)
                 {
                     //夢に移行するときにスポナーからすべての敵を消滅させる
@@ -83,19 +79,18 @@ public class State : MonoBehaviour
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = true;
                 col.enabled = true;
-                attackMesh.enabled = true;
-                attackCol.enabled = true;
+               // attackCol.enabled = true;
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 60)
+        if (gameTime >= 0 && gameTime <= 1)
         {
             matFlag1 = true;
             type = Game_Type.real;
             Debug.Log("現実");
         }
 
-        if (gameTime >= 60 && gameTime <= 120)
+        if (gameTime >= 1 && gameTime <= 120)
         {
             type = Game_Type.dreame;
             Debug.Log("夢");
