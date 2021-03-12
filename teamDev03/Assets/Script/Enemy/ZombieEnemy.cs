@@ -24,6 +24,14 @@ public class ZombieEnemy : MonoBehaviour
     //　攻撃中の時間
     [SerializeField]
     private float attackTime = 1.5f;
+    //　ダメ―ジを受けた際の硬直時間
+    [SerializeField]
+    private float damageTime = 1.5f;
+
+    //　HP
+    [SerializeField]
+    private int enemyHp = 3;
+
     //　経過時間
     private float elapsedTime;
     private Animator animator;
@@ -37,6 +45,7 @@ public class ZombieEnemy : MonoBehaviour
     [SerializeField]
     private bool isAttack;
 
+    //攻撃の当たり判定用
     [SerializeField]
     private SphereCollider sphereCollider;
 
@@ -64,10 +73,6 @@ public class ZombieEnemy : MonoBehaviour
         else if (state == EnemyState.Chase)
         {
             //追跡対象を設定
-            //if(TargetObject == null)
-            //{
-            //    TargetObject = GameObject.Find("Player");
-            //}
             agent.SetDestination(TargetObject.transform.position);
             if (isAttack)
             {//攻撃可能な距離なら攻撃
@@ -102,6 +107,30 @@ public class ZombieEnemy : MonoBehaviour
                     SetState(EnemyState.Chase);
                 }
             }
+        }
+        else if(state == EnemyState.Damege)
+        {
+            elapsedTime += Time.deltaTime;
+
+            //硬直が終わったら追いかける
+            if(elapsedTime > damageTime)
+            {
+                //攻撃をくらった後にHpが0以下なら消す
+                if (enemyHp <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    SetState(EnemyState.Chase);
+                }
+            }
+            
+        }
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            SetState(EnemyState.Damege);
         }
 
         //navimeshの位置にEnemyを合わせる
@@ -156,17 +185,23 @@ public class ZombieEnemy : MonoBehaviour
         }
         else if (tempState == EnemyState.Damege)
         {
+            elapsedTime = 0f;
+            //hpを減らす
+            enemyHp -= 1; 
             //移動をできなくする
             agent.updatePosition = false;
+            //攻撃の当たり判定消す
+            AttackEnd();
 
             //攻撃状態の場合アニメーションを中断する
+            animator.ResetTrigger("Attack");
             //ダメージを受けたアニメーション
+            animator.SetTrigger("Damage");
         }
     }
 
     void OnTriggerStay(Collider collider)
     {
-
         //エネミーがプレイヤーを攻撃できる範囲にいるか
         if (collider.gameObject.name == "Attackable")
         {
