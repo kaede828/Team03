@@ -6,6 +6,8 @@ public class SpawnerScript : MonoBehaviour
 {
     //　出現させる敵を入れておく
     [SerializeField] GameObject enemy;
+    //　出現させた敵を入れておくリスト
+    [SerializeField] private List<GameObject> enemyList = new List<GameObject>();
     //　次に敵が出現するまでの時間
     [SerializeField] float appearNextTime;
     //　この場所から出現する敵の数
@@ -14,6 +16,9 @@ public class SpawnerScript : MonoBehaviour
     private int numberOfEnemys;
     //　待ち時間計測フィールド
     private float elapsedTime;
+    //  このスポナーから敵を出現させることが出来るかどうか
+    private bool isSpawn;
+
 
     void Start()
     {
@@ -26,7 +31,7 @@ public class SpawnerScript : MonoBehaviour
     void Update()
     {
         //　この場所から出現する最大数を超えてたら何もしない
-        if (numberOfEnemys >= maxNumOfEnemys)
+        if (numberOfEnemys >= maxNumOfEnemys|| isSpawn == false)
         {
             return;
         }
@@ -40,6 +45,11 @@ public class SpawnerScript : MonoBehaviour
 
             AppearEnemy();
         }
+
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            DestroyEnemy();
+        }
     }
     //　敵出現メソッド
     void AppearEnemy()
@@ -47,9 +57,35 @@ public class SpawnerScript : MonoBehaviour
         //　敵の向きをランダムに決定
         var randomRotationY = Random.value * 360f;
 
-        GameObject.Instantiate(enemy, transform.position, Quaternion.Euler(0f, randomRotationY, 0f));
+        GameObject gameObject = GameObject.Instantiate(enemy, transform.position, Quaternion.Euler(0f, randomRotationY, 0f));
+        //生成した敵をリストに入れる
+        enemyList.Add(gameObject);
         
         numberOfEnemys++;
         elapsedTime = 0f;
+    }
+
+    //　全ての敵消滅メソッド
+    public void DestroyEnemy()
+    {  
+        //リスト内全てのエネミーを消滅させる
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            Destroy(enemyList[i]);
+        }
+        //リストをクリアする
+        enemyList.Clear();
+        numberOfEnemys = 0;
+    }
+
+    //　スポナーをアクティブにする
+    public void SpawnTrue()
+    {
+        isSpawn = true;
+    }
+
+    public void SpawnFalse()
+    {
+        isSpawn = false;
     }
 }
