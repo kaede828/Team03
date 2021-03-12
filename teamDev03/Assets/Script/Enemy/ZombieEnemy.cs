@@ -24,6 +24,9 @@ public class ZombieEnemy : MonoBehaviour
     //　攻撃中の時間
     [SerializeField]
     private float attackTime = 1.5f;
+    //　攻撃中に当たり判定を出す時間
+    [SerializeField]
+    private float attack = 1.0f;
     //　ダメ―ジを受けた際の硬直時間
     [SerializeField]
     private float damageTime = 1.5f;
@@ -45,6 +48,11 @@ public class ZombieEnemy : MonoBehaviour
     [SerializeField]
     private bool isAttack;
 
+    //プレイヤーからダメージを受けたか
+    [SerializeField]
+    private bool isDamage;
+
+
     //攻撃の当たり判定用
     [SerializeField]
     private SphereCollider sphereCollider;
@@ -62,6 +70,12 @@ public class ZombieEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ダメージを受けてエネミーステートがすでにだめーじじゃなかったら
+        if (isDamage&& state != EnemyState.Damege)
+        {
+            SetState(EnemyState.Damege);
+            isDamage = false;
+        }
 
         //待機状態
         if (state == EnemyState.Wait)
@@ -84,9 +98,16 @@ public class ZombieEnemy : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
+            //時間になったら当たり判定を出す
+            if(elapsedTime > attack)
+            {
+                AttackStart();
+            }
+
             //攻撃が終わったら攻撃後の硬直へ
             if (elapsedTime > attackTime)
             {
+                AttackEnd();
                 SetState(EnemyState.Freeze);
             }
         }
@@ -128,14 +149,11 @@ public class ZombieEnemy : MonoBehaviour
             
         }
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            SetState(EnemyState.Damege);
-        }
 
         //navimeshの位置にEnemyを合わせる
         agent.nextPosition = transform.position;
         isAttack = false;
+
     }
 
 
@@ -166,7 +184,7 @@ public class ZombieEnemy : MonoBehaviour
             //攻撃状態なら色を赤にする
             //GetComponent<Renderer>().material.color = Color.red;
             //攻撃処理
-            AttackStart();
+            //AttackStart();
             //移動をできなくする
             agent.updatePosition = false;
             animator.SetBool("Walk", false);
@@ -178,7 +196,7 @@ public class ZombieEnemy : MonoBehaviour
             elapsedTime = 0f;
             //色を白にする
             //GetComponent<Renderer>().material.color = Color.white;
-            AttackEnd();
+            //AttackEnd();
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", true);
             animator.SetBool("Attack", false);
@@ -209,13 +227,28 @@ public class ZombieEnemy : MonoBehaviour
         }
     }
 
+    //エネミーがダメージを受けたか
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "PlayerAttack")
+        {
+            isDamage = true;
+        }
+    }
+
     void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.name == "Attackable")
         {
             isAttack = false;
         }
+        if (collider.gameObject.tag == "PlayerAttack")
+        {
+            isDamage = false;
+        }
     }
+
+
 
     void AttackStart()
     {
@@ -225,7 +258,10 @@ public class ZombieEnemy : MonoBehaviour
 
     void AttackEnd()
     {
-        sphereCollider.enabled = false;
+        if (sphereCollider.enabled == true)
+        {
+            sphereCollider.enabled = false;
+        }
     }
 
 }
