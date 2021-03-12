@@ -33,8 +33,10 @@ public class Player : MonoBehaviour
     static public int HP;
 
     //攻撃
-    [SerializeField] GameObject Attack;
-    private Collider AttackCollider;
+    [SerializeField] GameObject Attack1;
+    [SerializeField] GameObject Attack2;
+    [SerializeField] GameObject Attack3;
+    [SerializeField] GameObject Attack4;
 
     //アニメーション
     private Animator animator;
@@ -42,22 +44,38 @@ public class Player : MonoBehaviour
     private const string key_isJump = "isJump";
     private const string key_isAvert = "isAvert";
     private const string key_isAttack = "isAttack";
-
+    AnimatorClipInfo[] clipInfo;
+    string clipName;
+    int animatorNum;
 
     CharacterController characterController;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        //右手取得
-        AttackCollider = Attack.GetComponent<BoxCollider>();
         this.animator = GetComponent<Animator>();
 
         DefaultSpeed = Speed;
+
+        
     }
 
     void FixedUpdate()
     {
+        // アニメーションの情報取得
+        clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        // 再生中のクリップ名
+        clipName = clipInfo[0].clip.name;
+        //アニメーションの状態
+        if (clipName == "WAIT00") animatorNum = 0;
+        if (clipName == "RUN00_F") animatorNum = 1;
+        if (clipName == "JUMP00") animatorNum = 2;
+        if (clipName == "SLIDE00") animatorNum = 3;
+        if (clipName == "POSE30") animatorNum = 4;
+        if (clipName == "POSE29") animatorNum = 5;
+        if (clipName == "POSE26") animatorNum = 6;
+        if (clipName == "WAIT04") animatorNum = 7;
+
         //移動
         moveX = Input.GetAxis("Horizontal") * Speed;
         moveZ = Input.GetAxis("Vertical") * Speed;
@@ -146,17 +164,49 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown("joystick button 1"))
             {
                 this.animator.SetTrigger(key_isAttack);
-                //右手の当たり判定を有効化
-                AttackCollider.enabled = true;
-
-                //一定時間後にコライダーの機能をオフにする
-                Invoke("ColliderReset", 0.2f);
+                
             }
         }
+
+        //雑な攻撃の当たり判定
+        switch (animatorNum)
+        {
+            case 0:
+                Attack1.SetActive(false);
+                Attack2.SetActive(false);
+                Attack3.SetActive(false);
+                Attack4.SetActive(false);
+                break;
+            case 1:
+                Attack1.SetActive(false);
+                Attack2.SetActive(false);
+                Attack3.SetActive(false);
+                Attack4.SetActive(false);
+                break;
+            case 4:
+                Attack1.SetActive(true);
+                break;
+            case 5:
+                Attack2.SetActive(true);
+                Attack1.SetActive(false);
+                break;
+            case 6:
+                Attack3.SetActive(true);
+                Attack2.SetActive(false);
+                break;
+            case 7:
+                Attack4.SetActive(true);
+                Attack3.SetActive(false);
+                break;
+        }
+
+
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
     {
-        AttackCollider.enabled = false;
+
+        Attack4.SetActive(false);
+
     }
 }
