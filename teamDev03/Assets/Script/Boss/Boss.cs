@@ -80,7 +80,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
 
-
+        AttackEnd();
         Debug.Log(aiCount);
         switch (aiCount)
         {
@@ -267,9 +267,6 @@ public class Boss : MonoBehaviour
 
     void AttackEnd()
     {
-        if (boxCollider1.enabled == true)
-        {
-            boxCollider1.enabled = false;
-        }
+        boxCollider1.enabled = false;
     }
 }
