@@ -38,6 +38,10 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Attack3;
     [SerializeField] GameObject Attack4;
 
+    //強化ポイント
+    public ZombieEnemy zombieEnemy;
+    private int Point;
+
     //アニメーション
     private Animator animator;
     private const string key_isRun = "isRun";//フラグの名前
@@ -63,6 +67,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Point = zombieEnemy.GetPoint();
+        //Debug.Log("ポイント" + Point);
+
         // アニメーションの情報取得
         clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         // 再生中のクリップ名

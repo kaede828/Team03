@@ -1664,7 +1664,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913876767}
-  m_LocalRotation: {x: 0.20652357, y: -0.54074913, z: 0.13898784, w: 0.8035053}
+  m_LocalRotation: {x: 0.2065236, y: -0.54074913, z: 0.13898782, w: 0.8035053}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4059,6 +4059,12 @@ PrefabInstance:
       propertyPath: AvertSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5117688033271162176, guid: 1d288ff71269b7e45bab7ac024790d00,
+        type: 3}
+      propertyPath: zombieEnemy
+      value: 
+      objectReference: {fileID: -5394754576951395035, guid: 6dc4cf4496348884d8ee27743ae38562,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d288ff71269b7e45bab7ac024790d00, type: 3}
 --- !u!1001 &8071326509160396347
