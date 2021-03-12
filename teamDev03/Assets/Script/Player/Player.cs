@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    //ボスに渡すフラグ
+    public static bool bossAttack;
+
     //移動
     private Vector3 Move;//移動
     bool MovePossible;//移動可能か
@@ -80,6 +83,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        bossAttack = false;
+
         PointT = Point.ToString();
         PointText.text = PointT;
 
@@ -298,7 +303,16 @@ public class Player : MonoBehaviour
             HPimage.fillAmount =(float) HP/ MaxHP;
             this.animator.SetTrigger(key_isDamage);
         }
+        if(collider.gameObject.tag=="BossEye")
+        {
+            bossAttack = true;
+        }
 
+    }
+
+    public static bool BossAttack()
+    {
+        return bossAttack;
     }
     
 }

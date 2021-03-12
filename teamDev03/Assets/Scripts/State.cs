@@ -12,10 +12,12 @@ public class State : MonoBehaviour
 
     public SpawnerScript[] spawner;
 
-    private MeshRenderer mesh;
+    private SkinnedMeshRenderer mesh;
     private BoxCollider col;
     private MeshRenderer attackMesh;
     private BoxCollider attackCol;
+
+    public static bool matFlag1;
 
     enum Game_Type
     {
@@ -29,11 +31,12 @@ public class State : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        matFlag1 = false;
         type = Game_Type.real;
         //falseの時は見えない、trueの時は見える
         bossState = false;
         gameTime = 0;
-        mesh = boss.GetComponent<MeshRenderer>();
+        mesh = boss.GetComponent<SkinnedMeshRenderer>();
         col = boss.GetComponent<BoxCollider>();
         attackMesh = attack.GetComponent<MeshRenderer>();
         attackCol = attack.GetComponent<BoxCollider>();
@@ -87,6 +90,7 @@ public class State : MonoBehaviour
 
         if (gameTime >= 0 && gameTime <= 60)
         {
+            matFlag1 = true;
             type = Game_Type.real;
             Debug.Log("現実");
         }
@@ -99,6 +103,7 @@ public class State : MonoBehaviour
 
         if (gameTime >= 120 && gameTime <= 180)
         {
+            matFlag1 = false;
             type = Game_Type.interval;
             Debug.Log("狭間");
         }
