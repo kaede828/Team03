@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     //体力
     public int MaxHP = 300;
     public int HP;
-    [SerializeField] Image image;
+    [SerializeField] Image HPimage;
     [SerializeField] Text HPtext;
     [SerializeField] Text MaxHPtext;
 
@@ -224,6 +225,7 @@ public class Player : MonoBehaviour
                 break;
             case 7:
                 Attack4.SetActive(true);
+                Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
                 break;
         }
@@ -274,13 +276,17 @@ public class Player : MonoBehaviour
         MaxHPtext.text= MaxHP.ToString();
         HPtext.text = HP.ToString();
 
+        //プレイヤー脂肪
+        if(HP<=0)
+        {
+            SceneManager.LoadScene("Ending");
+        }
+
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
     {
-
         Attack4.SetActive(false);
-
     }
 
     //ダメージ
@@ -288,8 +294,8 @@ public class Player : MonoBehaviour
     {
         if (collider.gameObject.tag == "EnemyAttack")
         {
-            HP -= 10;
-            image.fillAmount = HP / MaxHP;
+            HP -= 30;
+            HPimage.fillAmount =(float) HP/ MaxHP;
             this.animator.SetTrigger(key_isDamage);
         }
 
