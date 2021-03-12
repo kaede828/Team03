@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -108,6 +109,11 @@ public class Boss : MonoBehaviour
             anima.SetBool("Idle",false);
             anima.SetTrigger("Damge");
             aiCount = 1;
+        }
+
+        if(Hp<=0)
+        {
+            SceneManager.LoadScene("Ending");
         }
 
         isAttack = false;
