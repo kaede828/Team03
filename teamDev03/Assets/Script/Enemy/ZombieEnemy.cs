@@ -60,7 +60,6 @@ public class ZombieEnemy : MonoBehaviour
     //追加
     GameObject Player;
     Player player;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -149,6 +148,7 @@ public class ZombieEnemy : MonoBehaviour
                 if (enemyHp <= 0)
                 {
                     player.Point += 50;
+                    player.Kill += 1;
                     Destroy(this.gameObject);
                 }
                 else

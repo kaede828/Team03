@@ -14,9 +14,9 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space))
-            {
-              SceneManager.LoadScene("Game");
-            }
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }

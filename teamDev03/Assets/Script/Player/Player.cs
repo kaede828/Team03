@@ -70,6 +70,9 @@ public class Player : MonoBehaviour
 
     CharacterController characterController;
 
+    //倒した敵の数
+    public int Kill=0;
+    public static int KillEnemy=0;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -287,6 +290,8 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("Ending");
         }
 
+        KillEnemy = Kill;
+
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
@@ -314,5 +319,15 @@ public class Player : MonoBehaviour
     {
         return bossAttack;
     }
-    
+    //倒した数
+    public static int getKillEnemy()
+    {
+        return KillEnemy;
+    }
+
+    public void PlayerRecovery()
+    {
+        HP = MaxHP;
+        HPimage.fillAmount = (float)HP / MaxHP;
+    }
 }

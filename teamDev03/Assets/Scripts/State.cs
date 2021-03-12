@@ -18,6 +18,14 @@ public class State : MonoBehaviour
 
     public static bool matFlag1;
 
+    //世界の状態
+    [SerializeField] GameObject REAL;
+    [SerializeField] GameObject DREAM;
+    [SerializeField] GameObject GAP;
+
+    //プレイヤー
+    GameObject Player;
+
     enum Game_Type
     {
         real = 0,
@@ -38,6 +46,7 @@ public class State : MonoBehaviour
         mesh = boss.GetComponent<SkinnedMeshRenderer>();
         col = boss.GetComponent<BoxCollider>();
         attackCol = attack.GetComponent<BoxCollider>();
+        Player = GameObject.Find("Player");
 
     }
 
@@ -83,28 +92,35 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 1)
+        if (gameTime >= 0 && gameTime <= 60)
         {
             matFlag1 = true;
             type = Game_Type.real;
-            Debug.Log("現実");
+            REAL.SetActive(true);
+            DREAM.SetActive(false);
+            GAP.SetActive(false);
         }
 
-        if (gameTime >= 1 && gameTime <= 120)
+        if (gameTime >= 60 && gameTime <= 120)
         {
             type = Game_Type.dreame;
-            Debug.Log("夢");
+            REAL.SetActive(false);
+            DREAM.SetActive(true);
+            GAP.SetActive(false);
         }
 
         if (gameTime >= 120 && gameTime <= 180)
         {
             matFlag1 = false;
             type = Game_Type.interval;
-            Debug.Log("狭間");
+            REAL.SetActive(false);
+            DREAM.SetActive(false);
+            GAP.SetActive(true);
         }
 
         if (gameTime >= 180)
         {
+            Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
         }
 
