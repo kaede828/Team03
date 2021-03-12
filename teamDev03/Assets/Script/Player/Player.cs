@@ -30,7 +30,8 @@ public class Player : MonoBehaviour
     float Timer;
 
     //体力
-    static public int HP;
+    public int HP=100;
+    [SerializeField] Image image;
 
     //攻撃
     [SerializeField] GameObject Attack1;
@@ -39,8 +40,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Attack4;
 
     //強化ポイント
-    public ZombieEnemy zombieEnemy;
-    private int Point;
+    public int Point;
+    private string PointT;
+    [SerializeField] Text PointText; // Textオブジェクト
 
     //アニメーション
     private Animator animator;
@@ -67,8 +69,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Point = zombieEnemy.GetPoint();
-        //Debug.Log("ポイント" + Point);
+        PointT = Point.ToString();
+        PointText.text = PointT;
 
         // アニメーションの情報取得
         clipInfo = animator.GetCurrentAnimatorClipInfo(0);
@@ -230,9 +232,13 @@ public class Player : MonoBehaviour
     {
         if (collider.gameObject.tag == "EnemyAttack")
         {
-            HP -= 1;
+            HP -= 10;
+            image.fillAmount = HP / 100.0f;
             this.animator.SetTrigger(key_isDamage);
         }
 
     }
+
+
+    
 }
