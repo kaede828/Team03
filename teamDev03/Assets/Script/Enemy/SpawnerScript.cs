@@ -17,6 +17,7 @@ public class SpawnerScript : MonoBehaviour
     //　待ち時間計測フィールド
     private float elapsedTime;
     //  このスポナーから敵を出現させることが出来るかどうか
+    [SerializeField]
     private bool isSpawn;
 
 
@@ -31,7 +32,7 @@ public class SpawnerScript : MonoBehaviour
     void Update()
     {
         //　この場所から出現する最大数を超えてたら何もしない
-        if (numberOfEnemys >= maxNumOfEnemys|| isSpawn == false)
+        if (numberOfEnemys >= maxNumOfEnemys || isSpawn == false)
         {
             return;
         }
