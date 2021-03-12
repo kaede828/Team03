@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     private const string key_isJump = "isJump";
     private const string key_isAvert = "isAvert";
     private const string key_isAttack = "isAttack";
+    private const string key_isDamage = "isDamage";
     AnimatorClipInfo[] clipInfo;
     string clipName;
     int animatorNum;
@@ -76,40 +77,43 @@ public class Player : MonoBehaviour
         if (clipName == "POSE26") animatorNum = 6;
         if (clipName == "WAIT04") animatorNum = 7;
 
-        //移動
-        moveX = Input.GetAxis("Horizontal") * Speed;
-        moveZ = Input.GetAxis("Vertical") * Speed;
-        Move = Camera.transform.rotation * new Vector3(moveX, 0, moveZ);
-        characterController.SimpleMove(Move);
-
-        //進行方向の回転
-        Vector3 angle = new Vector3(0, Input.GetAxis("HorizontalRight") * AngleSpeed, 0);
-        Camera.transform.Rotate(angle);
-
-        //どこからどこに進んだか
-        Vector3 diff = transform.position - LastPos;
-        diff = new Vector3(diff.x, 0, diff.z);
-        //最後の場所を更新
-        LastPos = transform.position;
-       
-
-        //移動しているか
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        //攻撃中でなければ
+        if(animatorNum<4)
         {
-            this.animator.SetBool(key_isRun, false);  
-        }
-        else
-        {
-            //ベクトルの大きさが0.01以上の時に向きを変える
-            if (diff.magnitude > 0.01f)
+            //移動
+            moveX = Input.GetAxis("Horizontal") * Speed;
+            moveZ = Input.GetAxis("Vertical") * Speed;
+            Move = Camera.transform.rotation * new Vector3(moveX, 0, moveZ);
+            characterController.SimpleMove(Move);
+
+            //進行方向の回転
+            Vector3 angle = new Vector3(0, Input.GetAxis("HorizontalRight") * AngleSpeed, 0);
+            Camera.transform.Rotate(angle);
+
+            //どこからどこに進んだか
+            Vector3 diff = transform.position - LastPos;
+            diff = new Vector3(diff.x, 0, diff.z);
+            //最後の場所を更新
+            LastPos = transform.position;
+
+
+            //移動しているか
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             {
-                transform.rotation = Quaternion.LookRotation(diff);
+                this.animator.SetBool(key_isRun, false);
             }
-            this.animator.SetBool(key_isRun, true);
+            else
+            {
+                //ベクトルの大きさが0.01以上の時に向きを変える
+                if (diff.magnitude > 0.01f)
+                {
+                    transform.rotation = Quaternion.LookRotation(diff);
+                }
+                this.animator.SetBool(key_isRun, true);
+            }
         }
 
-
-
+     
         //ジャンプ
         if (characterController.isGrounded)//地面についているか
         {
@@ -132,31 +136,31 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown("joystick button 2"))
             {
-                Avert = true;
+                //Avert = true;
                 this.animator.SetTrigger(key_isAvert);
             }
         }
 
-        //回避したら
-        if (Avert == true)
-        {
-            if (Timer <= AvertTime)
-            {
-                //スピードアップ
-                Speed = AvertSpeed;
-                Timer += Time.deltaTime;
+        ////回避したら
+        //if (Avert == true)
+        //{
+        //    if (Timer <= AvertTime)
+        //    {
+        //        //スピードアップ
+        //        Speed = AvertSpeed;
+        //        Timer += Time.deltaTime;
 
-                //無敵処理
-            }
-            else
-            {
-                //通常状態へ
-                Speed = DefaultSpeed;
-                Timer = 0;
-                Avert = false;
-            }
+        //        //無敵処理
+        //    }
+        //    else
+        //    {
+        //        //通常状態へ
+        //        Speed = DefaultSpeed;
+        //        Timer = 0;
+        //        Avert = false;
+        //    }
 
-        }      
+        //}      
 
         //攻撃
         if (characterController.isGrounded)//地面についていたら
@@ -176,12 +180,17 @@ public class Player : MonoBehaviour
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                this.tag = ("Player");
                 break;
             case 1:
                 Attack1.SetActive(false);
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                this.tag = ("Player");
+                break;
+            case 3:
+                this.tag = ("PlayerAvert");
                 break;
             case 4:
                 Attack1.SetActive(true);
@@ -198,8 +207,7 @@ public class Player : MonoBehaviour
                 Attack4.SetActive(true);
                 Attack3.SetActive(false);
                 break;
-        }
-
+        }       
 
     }
     //攻撃の当たり判定を消す
@@ -207,6 +215,17 @@ public class Player : MonoBehaviour
     {
 
         Attack4.SetActive(false);
+
+    }
+
+    //ダメージ
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "EnemyAttack")
+        {
+            HP -= 1;
+            this.animator.SetTrigger(key_isDamage);
+        }
 
     }
 }
