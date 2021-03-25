@@ -18,6 +18,12 @@ public class State : MonoBehaviour
 
     public static bool matFlag1;
 
+    float fogDen;
+    //FogDensityの最小値、最大値
+    const float Min = 0;
+    const float Max = 0.03f;
+
+
     //世界の状態
     [SerializeField] GameObject REAL;
     [SerializeField] GameObject DREAM;
@@ -48,6 +54,8 @@ public class State : MonoBehaviour
         attackCol = attack.GetComponent<BoxCollider>();
         Player = GameObject.Find("Player");
 
+        fogDen = Mathf.Min(fogDen, Min);
+        fogDen = Mathf.Max(fogDen, Max);
     }
 
     // Update is called once per frame
@@ -59,6 +67,8 @@ public class State : MonoBehaviour
         {
             case Game_Type.real:
                 bossState = false;
+                fogDen = 0;
+                RenderSettings.fog = false;
 
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = false;
@@ -68,6 +78,10 @@ public class State : MonoBehaviour
 
             case Game_Type.dreame:
                 bossState = true;
+
+                fogDen += 0.0001f;
+                RenderSettings.fog = true;
+                RenderSettings.fogDensity = fogDen;
 
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = true;
@@ -84,6 +98,10 @@ public class State : MonoBehaviour
 
             case Game_Type.interval:
                 bossState = true;
+
+                fogDen -= 0.0004f;
+                RenderSettings.fog = true;
+                RenderSettings.fogDensity = fogDen;
 
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = true;
