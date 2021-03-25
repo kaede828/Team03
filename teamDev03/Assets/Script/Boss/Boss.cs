@@ -101,14 +101,17 @@ public class Boss : MonoBehaviour
         }
         if(isDamage)
         {
+            if(State.matFlag1==false)
+            {
+                elapsedTime = 0;
+                Hp -= 1;
+                anima.SetBool("Attack", false);
+                anima.SetBool("Walk", false);
+                anima.SetBool("Idle", false);
+                anima.SetTrigger("Damge");
+                aiCount = 1;
+            }
 
-            elapsedTime = 0;
-            Hp -= 1;
-            anima.SetBool("Attack",false);
-            anima.SetBool("Walk",false);
-            anima.SetBool("Idle",false);
-            anima.SetTrigger("Damge");
-            aiCount = 1;
         }
 
         if(Hp<=0)
