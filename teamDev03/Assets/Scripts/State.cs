@@ -110,7 +110,7 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 60)
+        if (gameTime >= 0 && gameTime <= 10)
         {
             matFlag1 = true;
             type = Game_Type.real;
@@ -119,7 +119,7 @@ public class State : MonoBehaviour
             GAP.SetActive(false);
         }
 
-        if (gameTime >= 60 && gameTime <= 120)
+        if (gameTime >= 10 && gameTime <= 20)
         {
             type = Game_Type.dreame;
             REAL.SetActive(false);
@@ -127,7 +127,7 @@ public class State : MonoBehaviour
             GAP.SetActive(false);
         }
 
-        if (gameTime >= 120 && gameTime <= 180)
+        if (gameTime >= 20 && gameTime <= 30)
         {
             matFlag1 = false;
             type = Game_Type.interval;
@@ -136,7 +136,7 @@ public class State : MonoBehaviour
             GAP.SetActive(true);
         }
 
-        if (gameTime >= 180)
+        if (gameTime >= 30)
         {
             Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
