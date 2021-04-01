@@ -23,7 +23,7 @@ public class State : MonoBehaviour
     const float Min = 0;
     const float Max = 0.03f;
 
-
+   
     //世界の状態
     [SerializeField] GameObject REAL;
     [SerializeField] GameObject DREAM;
@@ -54,15 +54,18 @@ public class State : MonoBehaviour
         attackCol = attack.GetComponent<BoxCollider>();
         Player = GameObject.Find("Player");
 
-        fogDen = Mathf.Min(fogDen, Min);
-        fogDen = Mathf.Max(fogDen, Max);
+        //fogDen = Mathf.Min(fogDen, Min);
+        //fogDen = Mathf.Max(fogDen, Max);
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         gameTime += Time.deltaTime;
-
+        fogDen = Mathf.Clamp(fogDen, Min, Max);
+        Debug.Log(fogDen);
         switch (type)
         {
             case Game_Type.real:
@@ -110,7 +113,7 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 60)
+        if (gameTime >= 0 && gameTime <= 10)
         {
             matFlag1 = true;
             type = Game_Type.real;
@@ -119,7 +122,7 @@ public class State : MonoBehaviour
             GAP.SetActive(false);
         }
 
-        if (gameTime >= 60 && gameTime <= 120)
+        if (gameTime >= 10 && gameTime <= 20)
         {
             type = Game_Type.dreame;
             REAL.SetActive(false);
@@ -127,7 +130,7 @@ public class State : MonoBehaviour
             GAP.SetActive(false);
         }
 
-        if (gameTime >= 120 && gameTime <= 180)
+        if (gameTime >= 20 && gameTime <= 30)
         {
             matFlag1 = false;
             type = Game_Type.interval;
@@ -136,7 +139,7 @@ public class State : MonoBehaviour
             GAP.SetActive(true);
         }
 
-        if (gameTime >= 180)
+        if (gameTime >= 30)
         {
             Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
