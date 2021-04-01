@@ -23,7 +23,7 @@ public class State : MonoBehaviour
     const float Min = 0;
     const float Max = 0.03f;
 
-
+   
     //世界の状態
     [SerializeField] GameObject REAL;
     [SerializeField] GameObject DREAM;
@@ -54,15 +54,18 @@ public class State : MonoBehaviour
         attackCol = attack.GetComponent<BoxCollider>();
         Player = GameObject.Find("Player");
 
-        fogDen = Mathf.Min(fogDen, Min);
-        fogDen = Mathf.Max(fogDen, Max);
+        //fogDen = Mathf.Min(fogDen, Min);
+        //fogDen = Mathf.Max(fogDen, Max);
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         gameTime += Time.deltaTime;
-
+        fogDen = Mathf.Clamp(fogDen, Min, Max);
+        Debug.Log(fogDen);
         switch (type)
         {
             case Game_Type.real:
