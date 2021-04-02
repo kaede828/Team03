@@ -97,13 +97,13 @@ public class Player : MonoBehaviour
         clipName = clipInfo[0].clip.name;
         //アニメーションの状態
         if (clipName == "WAIT00") animatorNum = 0;
-        if (clipName == "RUN00_F") animatorNum = 1;
-        if (clipName == "JUMP00") animatorNum = 2;
-        if (clipName == "SLIDE00") animatorNum = 3;
-        if (clipName == "POSE30") animatorNum = 4;
-        if (clipName == "POSE29") animatorNum = 5;
-        if (clipName == "POSE26") animatorNum = 6;
-        if (clipName == "WAIT04") animatorNum = 7;
+        if (clipName == "Running") animatorNum = 1;
+        if (clipName == "Sword And Shield Jump") animatorNum = 2;
+        if (clipName == "Rowling") animatorNum = 3;
+        if (clipName == "Sword And Shield Slash2") animatorNum = 4;
+        if (clipName == "Sword And Shield Kick") animatorNum = 5;
+        if (clipName == "Sword And Shield Slash") animatorNum = 6;
+        if (clipName == "Sword And Shield Attack") animatorNum = 7;
 
         //攻撃中でなければ
         if(animatorNum<4)
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown("joystick button 0"))
             {
                 //ジャンプ
-                //Jump.y = JumpPower;
+                Jump.y = JumpPower;
                 this.animator.SetTrigger(key_isJump);
 
             }
