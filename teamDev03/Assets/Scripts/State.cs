@@ -58,7 +58,7 @@ public class State : MonoBehaviour
         Player = GameObject.Find("Player");
 
         //シェーダーの値取得
-        mat = GetComponent<Renderer>().material;
+        mat = GetComponent<State>().mat;
         if (mat.HasProperty("_MyEmissionColor"))
         {
             //初期値
