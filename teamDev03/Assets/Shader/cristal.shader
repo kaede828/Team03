@@ -28,7 +28,7 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-			o.Albedo = _Color;
+			//o.Albedo = _Color;
 			float alpha = 1 - (abs(dot(IN.viewDir, IN.worldNormal)));
 			o.Alpha = alpha * 3.0f;
 			o.Emission = _MyEmissionColor;

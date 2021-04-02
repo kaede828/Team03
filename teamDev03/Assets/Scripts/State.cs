@@ -21,9 +21,9 @@ public class State : MonoBehaviour
     float fogDen;
     //FogDensityの最小値、最大値
     const float Min = 0;
-    const float Max = 0.03f;
+    const float Max = 0.025f;
 
-   
+
     //世界の状態
     [SerializeField] GameObject REAL;
     [SerializeField] GameObject DREAM;
@@ -31,6 +31,9 @@ public class State : MonoBehaviour
 
     //プレイヤー
     GameObject Player;
+
+    //クリスタルのマテリアル
+    public Material mat;
 
     enum Game_Type
     {
@@ -54,10 +57,13 @@ public class State : MonoBehaviour
         attackCol = attack.GetComponent<BoxCollider>();
         Player = GameObject.Find("Player");
 
-        //fogDen = Mathf.Min(fogDen, Min);
-        //fogDen = Mathf.Max(fogDen, Max);
-
-        
+        //シェーダーの値取得
+        mat = GetComponent<Renderer>().material;
+        if (mat.HasProperty("_MyEmissionColor"))
+        {
+            //初期値
+            mat.SetColor("_MyEmissionColor", new Color(0.0f, 0.8f, 1.0f, 0.0f));
+        }
     }
 
     // Update is called once per frame
@@ -77,6 +83,9 @@ public class State : MonoBehaviour
                 mesh.enabled = false;
                 col.enabled = false;
                 attackCol.enabled = false;
+
+                //シェーダーの値変更
+                mat.SetColor("_MyEmissionColor", new Color(0.0f, 0.8f, 1.0f, 0.0f));
                 break;
 
             case Game_Type.dreame:
@@ -97,6 +106,9 @@ public class State : MonoBehaviour
                     //スポナーから敵が出現しないよう設定
                     spawner[i].SpawnFalse();
                 }
+
+                //シェーダーの値変更
+                mat.SetColor("_MyEmissionColor", new Color(1.0f, 0, 0.5f));
                 break;
 
             case Game_Type.interval:
@@ -109,7 +121,10 @@ public class State : MonoBehaviour
                 //メッシュレンダラー、当たり判定のON/OFF
                 mesh.enabled = true;
                 col.enabled = true;
-               // attackCol.enabled = true;
+                // attackCol.enabled = true;
+
+                //シェーダーの値変更
+                mat.SetColor("_MyEmissionColor", new Color(1.0f, 1.0f, 0));
                 break;
         }
 
