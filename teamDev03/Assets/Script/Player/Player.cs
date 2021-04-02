@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         // 再生中のクリップ名
         clipName = clipInfo[0].clip.name;
         //アニメーションの状態
-        if (clipName == "WAIT00") animatorNum = 0;
+        if (clipName == "Sword And Shield Idle") animatorNum = 0;
         if (clipName == "Running") animatorNum = 1;
         if (clipName == "Sword And Shield Jump") animatorNum = 2;
         if (clipName == "Rowling") animatorNum = 3;
