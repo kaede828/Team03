@@ -21,9 +21,11 @@ public class Boss : MonoBehaviour
     //　経過時間
     private float elapsedTime;
     //管理ナンバー
-    float aiCount;
+    float aiCountH;
+    float aiCountY;
     //硬直時間
     public float rigorTime = 1.5f;
+    public float rigor = 1.5f;
     //攻撃時間
     public float attackTime = 1.5f;
     public float attackTime2 = 1.5f;
@@ -39,6 +41,8 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private BoxCollider boxCollider1;
     [SerializeField]
+    private BoxCollider boxCollider2;
+    [SerializeField]
     private GameObject siya;
     //[SerializeField]
     //private MeshRenderer mesh1;
@@ -49,13 +53,16 @@ public class Boss : MonoBehaviour
         Hp = 100;
         agent = GetComponent<NavMeshAgent>();
         elapsedTime = 0;
-        aiCount = 1;
+        aiCountH = 1;
+        aiCountY = 1;
         // autoBraking を無効にすると、目標地点の間を継続的に移動します
         //(つまり、エージェントは目標地点に近づいても
         // 速度をおとしません)
         agent.autoBraking = false;
         aflag = false;
         anima = GetComponent<Animator>();
+        AttackEnd();
+        AttackEnd2();
         //GotoNextPoint();
 
         //追跡したいオブジェクトの名前を入れる
@@ -81,27 +88,41 @@ public class Boss : MonoBehaviour
     void Update()
     {
 
-        AttackEnd();
-        Debug.Log(aiCount);
-        switch (aiCount)
+        Debug.Log(aiCountY);
+        if (State.matFlag1 == false)
         {
-            case 1:
-                Move();
-                break;
-            case 2:
-                Freeze();
-                break;
-            case 3:
-                Attack();
-                break;
-            case 4:
-                Attack2();
-                break;
+            AttackEnd2();
+            switch (aiCountY)
+            {
+                case 1:
+                    Move();
+                    break;
+                case 2:
+                    Freeze();
+                    break;
+                case 3:
+                    Attack2();
+                    break;
 
+            }
         }
-        if(isDamage)
+        else if (State.matFlag1)
         {
-            if(State.matFlag1==false)
+            AttackEnd();
+            switch (aiCountH)
+            {
+                case 1:
+                    HAttack();
+                    break;
+                case 2:
+                    FreezeH();
+                    break;
+            }
+        }
+        if (isDamage)
+        {
+
+            if (State.matFlag1 == false)
             {
                 elapsedTime = 0;
                 Hp -= 1;
@@ -109,12 +130,12 @@ public class Boss : MonoBehaviour
                 anima.SetBool("Walk", false);
                 anima.SetBool("Idle", false);
                 anima.SetTrigger("Damge");
-                aiCount = 1;
+                aiCountY = 1;
             }
 
         }
 
-        if(Hp<=0)
+        if (Hp <= 0)
         {
             SceneManager.LoadScene("Ending");
         }
@@ -122,20 +143,22 @@ public class Boss : MonoBehaviour
         isAttack = false;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        //trackingRangeの範囲を赤いワイヤーフレームで示す
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, trackingRange);
+    //void OnDrawGizmosSelected()
+    //{
+    //    //trackingRangeの範囲を赤いワイヤーフレームで示す
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, trackingRange);
 
-        //quitRangeの範囲を青いワイヤーフレームで示す
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, quitRange);
-    }
+    //    //quitRangeの範囲を青いワイヤーフレームで示す
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(transform.position, quitRange);
+    //}
 
     #region ボス移動
     void Move()
     {
+        AttackStart2();
+        anima.SetBool("Idle", false);
         anima.SetBool("Run", false);
         anima.SetBool("Walk", true);
         //Playerとこのオブジェクトの距離を測る
@@ -147,11 +170,11 @@ public class Boss : MonoBehaviour
         {
             if (elapsedTime > rigorTime)
             {
-                aiCount = 2;
+                aiCountY = 2;
                 elapsedTime = 0;
             }
             //追跡の時、quitRangeより距離が離れたら中止
-            if (Player.BossAttack()==false)
+            if (Player.BossAttack() == false)
                 tracking = false;
         }
         else
@@ -159,7 +182,7 @@ public class Boss : MonoBehaviour
             //PlayerがtrackingRangeより近づいたら追跡開始
             if (Player.BossAttack())
             {
-                aiCount = 2;
+                aiCountY = 2;
                 tracking = true;
 
             }
@@ -167,7 +190,7 @@ public class Boss : MonoBehaviour
 
             // エージェントが現目標地点に近づいてきたら、
             // 次の目標地点を選択します
-            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            if (!agent.pathPending && agent.remainingDistance < 5f)
             {
                 GotoNextPoint();
 
@@ -194,7 +217,7 @@ public class Boss : MonoBehaviour
         if (elapsedTime > rigorTime)
         {
 
-            aiCount = 3;
+            aiCountY = 3;
             elapsedTime = 0;
         }
     }
@@ -212,24 +235,54 @@ public class Boss : MonoBehaviour
         if (elapsedTime > attackTime)
         {
             elapsedTime = 0;
-            aiCount = 4;
+            aiCountY = 4;
         }
 
     }
 
     void Attack2()
     {
+        AttackEnd2();
+        anima.SetBool("Idle", false);
         agent.SetDestination(playerPos);
         if (isAttack)
         {
             AttackStart();
-                anima.SetBool("Attack", true);
+            anima.SetBool("Attack", true);
         }
         elapsedTime += Time.deltaTime;
         if (elapsedTime > attackTime2)
         {
             AttackEnd();
-            aiCount = 1;
+            aiCountY = 1;
+            elapsedTime = 0;
+        }
+    }
+
+    void HAttack()
+    {
+        AttackStart();
+        anima.SetBool("Run", true);
+        anima.SetBool("Idle", false);
+        anima.SetBool("Walk", false);
+        agent.speed = 20;
+        agent.angularSpeed = 500;
+        agent.destination = player.transform.position;
+        if (isAttack)
+        {
+            aiCountH = 2;
+        }
+    }
+    void FreezeH()
+    {
+        anima.SetBool("Run", false);
+        anima.SetBool("Idle", true);
+        elapsedTime += Time.deltaTime;
+        agent.speed = 0;
+        if (elapsedTime > rigor)
+        {
+
+            aiCountH = 1;
             elapsedTime = 0;
         }
     }
@@ -277,5 +330,15 @@ public class Boss : MonoBehaviour
     void AttackEnd()
     {
         boxCollider1.enabled = false;
+    }
+    void AttackStart2()
+    {
+        //攻撃する時に当たり判定をオンにする
+        boxCollider2.enabled = true;
+    }
+
+    void AttackEnd2()
+    {
+        boxCollider2.enabled = false;
     }
 }
