@@ -16,7 +16,7 @@ public class ZombieEnemy : MonoBehaviour
     };
 
     //プレイヤー
-    //[SerializeField]
+    [SerializeField]
     GameObject TargetObject;
     //　攻撃した後のフリーズ時間
     [SerializeField]
