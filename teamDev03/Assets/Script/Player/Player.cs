@@ -57,6 +57,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject GCursor;
     int SelectNum;
 
+    //技が使えるか
+    [SerializeField] Image SkillImage;
+    bool Skill1=false;
+    float SkillTime=0;
+
     //アニメーション
     private Animator animator;
     private const string key_isRun = "isRun";//フラグの名前
@@ -64,6 +69,7 @@ public class Player : MonoBehaviour
     private const string key_isAvert = "isAvert";
     private const string key_isAttack = "isAttack";
     private const string key_isDamage = "isDamage";
+    private const string key_isSkill = "isSkill";
     AnimatorClipInfo[] clipInfo;
     string clipName;
     int animatorNum;
@@ -104,9 +110,11 @@ public class Player : MonoBehaviour
         if (clipName == "Sword And Shield Kick") animatorNum = 5;
         if (clipName == "Sword And Shield Slash") animatorNum = 6;
         if (clipName == "Sword And Shield Attack") animatorNum = 7;
+        //スキル
+        if (clipName == "Sword And Shield Casting") animatorNum = 8;
 
         //攻撃中でなければ
-        if(animatorNum<4)
+        if (animatorNum<4)
         {
             //移動
             moveX = Input.GetAxis("Horizontal") * Speed;
@@ -189,6 +197,18 @@ public class Player : MonoBehaviour
         //    }
 
         //}      
+        //スキルタイム
+        
+        if(SkillTime>=20)
+        {
+            Skill1 = true;
+        }
+        else
+        {
+            SkillTime += Time.deltaTime;
+            Skill1 = false;
+        }
+        SkillImage.fillAmount += 1.0f / 20 * Time.deltaTime;
 
         //攻撃
         if (characterController.isGrounded)//地面についていたら
@@ -198,6 +218,17 @@ public class Player : MonoBehaviour
                 this.animator.SetTrigger(key_isAttack);
                 
             }
+            //スキル1
+            if(Skill1==true)
+            {
+                if (Input.GetKeyDown("joystick button 3"))
+                {
+                    this.animator.SetTrigger(key_isSkill);
+                    SkillTime = 0;
+                    SkillImage.fillAmount = 0;
+                }
+            }
+           
         }
 
         //雑な攻撃の当たり判定
