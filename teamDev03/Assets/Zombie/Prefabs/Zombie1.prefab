@@ -1775,6 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1ff32d1b018a45b557d4ff6069abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetObject: {fileID: 0}
   freezeTime: 1.5
   attackTime: 1.5
   attack: 1

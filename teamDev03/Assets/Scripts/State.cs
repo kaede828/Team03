@@ -130,7 +130,6 @@ public class State : MonoBehaviour
 
         if (gameTime >= 0 && gameTime <= 10)
         {
-            matFlag1 = true;
             type = Game_Type.real;
             REAL.SetActive(true);
             DREAM.SetActive(false);
@@ -139,6 +138,7 @@ public class State : MonoBehaviour
 
         if (gameTime >= 10 && gameTime <= 20)
         {
+            matFlag1 = true;
             type = Game_Type.dreame;
             REAL.SetActive(false);
             DREAM.SetActive(true);
