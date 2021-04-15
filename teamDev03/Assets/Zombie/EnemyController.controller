@@ -32,7 +32,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idel
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -47,7 +47,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2054729920978899392, guid: 124052813c116dd4b8ad9dea8786f3fc,
+  m_Motion: {fileID: -9093555803290530175, guid: 3b1a340a3400b0b40963b53cf018a961,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -132,7 +132,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6396828155121186910, guid: 124052813c116dd4b8ad9dea8786f3fc,
+  m_Motion: {fileID: -6270700519613687265, guid: 3b1a340a3400b0b40963b53cf018a961,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -210,7 +210,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1093959224083794204, guid: 124052813c116dd4b8ad9dea8786f3fc,
+  m_Motion: {fileID: -7700866944598597932, guid: 3b1a340a3400b0b40963b53cf018a961,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -223,7 +223,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy4_6Controller
+  m_Name: EnemyController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Walk
@@ -231,25 +231,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Damage
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Idle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -310,7 +310,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2054729920978899392, guid: 124052813c116dd4b8ad9dea8786f3fc,
+  m_Motion: {fileID: 5004442706506454508, guid: 3b1a340a3400b0b40963b53cf018a961,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
