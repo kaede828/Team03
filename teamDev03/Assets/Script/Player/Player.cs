@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     //ボスに渡すフラグ
     public static bool bossAttack;
 
+    //武器表示・非表示
+    [SerializeField] GameObject Sword;
+    [SerializeField] GameObject BackSword;
+
     //移動
     private Vector3 Move;//移動
     bool MovePossible;//移動可能か
@@ -247,12 +251,22 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 this.tag = ("Player");
+                Sword.SetActive(false);
+                BackSword.SetActive(true);
+                break;
+            case 2:
+                Sword.SetActive(false);
+                BackSword.SetActive(true);
                 break;
             case 3:
                 this.tag = ("PlayerAvert");
+                Sword.SetActive(false);
+                BackSword.SetActive(true);
                 break;
             case 4:
                 Attack1.SetActive(true);
+                Sword.SetActive(true);
+                BackSword.SetActive(false);
                 break;
             case 5:
                 Attack2.SetActive(true);
@@ -266,6 +280,10 @@ public class Player : MonoBehaviour
                 Attack4.SetActive(true);
                 Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
+                break;
+            case 8:
+                Sword.SetActive(true);
+                BackSword.SetActive(false);
                 break;
         }
 
