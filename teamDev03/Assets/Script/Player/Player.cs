@@ -24,23 +24,23 @@ public class Player : MonoBehaviour
     private Vector3 LastPos;//最後の場所
 
     //回転の速さ
-    [SerializeField] GameObject Camera;
+    [SerializeField] GameObject MainCamera;
     [SerializeField] float AngleSpeed = 6.0f;
 
     //ジャンプ
     private Vector3 Jump;//ジャンプ
-    [SerializeField] float JumpPower;//ジャンプ力
+    [SerializeField] float JumpPower=10.0f;//ジャンプ力
 
     //回避
     private bool Avert;
-    [SerializeField] float AvertTime;//回避時間
-    [SerializeField] float AvertSpeed;
+    [SerializeField] float AvertTime=0.2f;//回避時間
+    [SerializeField] float AvertSpeed=15;
     float Timer;
 
     //体力
     public int MaxHP = 300;
-    public int HP;
-    [SerializeField] Image HPimage;
+    public int HP=0;
+    [SerializeField] Image HPBarG;
     [SerializeField] Text HPtext;
     [SerializeField] Text MaxHPtext;
 
@@ -50,6 +50,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Attack3;
     [SerializeField] GameObject Attack4;
 
+    //必殺技
+    [SerializeField] GameObject AttackSkill1;
+
     //強化ポイント
     public int Point;
     private string PointT;
@@ -57,8 +60,8 @@ public class Player : MonoBehaviour
 
     //強化メニュー
     [SerializeField] GameObject PowerUpMenu;
-    [SerializeField] GameObject RCursor;
-    [SerializeField] GameObject GCursor;
+    [SerializeField] GameObject RedCursor;
+    [SerializeField] GameObject GreenCursor;
     int SelectNum;
 
     //技が使えるか
@@ -123,12 +126,12 @@ public class Player : MonoBehaviour
             //移動
             moveX = Input.GetAxis("Horizontal") * Speed;
             moveZ = Input.GetAxis("Vertical") * Speed;
-            Move = Camera.transform.rotation * new Vector3(moveX, 0, moveZ);
+            Move = MainCamera.transform.rotation * new Vector3(moveX, 0, moveZ);
             characterController.SimpleMove(Move);
 
             //進行方向の回転
             Vector3 angle = new Vector3(0, Input.GetAxis("HorizontalRight") * AngleSpeed, 0);
-            Camera.transform.Rotate(angle);
+            MainCamera.transform.Rotate(angle);
 
             //どこからどこに進んだか
             Vector3 diff = transform.position - LastPos;
@@ -228,8 +231,8 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown("joystick button 3"))
                 {
                     this.animator.SetTrigger(key_isSkill);
-                    SkillTime = 0;
-                    SkillImage.fillAmount = 0;
+                    //SkillTime = 0;
+                    //SkillImage.fillAmount = 0;
                 }
             }
            
@@ -243,6 +246,7 @@ public class Player : MonoBehaviour
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                AttackSkill1.SetActive(false);
                 this.tag = ("Player");
                 break;
             case 1:
@@ -250,6 +254,7 @@ public class Player : MonoBehaviour
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                AttackSkill1.SetActive(false);
                 this.tag = ("Player");
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
@@ -284,6 +289,7 @@ public class Player : MonoBehaviour
             case 8:
                 Sword.SetActive(true);
                 BackSword.SetActive(false);
+                AttackSkill1.SetActive(true);
                 break;
         }
 
@@ -316,13 +322,13 @@ public class Player : MonoBehaviour
                             HP += 50;
                             Point -= 500;
                         }
-                        GCursor.SetActive(true);
-                        RCursor.SetActive(false);                     
+                        GreenCursor.SetActive(true);
+                        RedCursor.SetActive(false);                     
                     }
                     else
                     {
-                        GCursor.SetActive(false);
-                        RCursor.SetActive(true);
+                        GreenCursor.SetActive(false);
+                        RedCursor.SetActive(true);
                     }
                                    
                     break;
@@ -354,7 +360,7 @@ public class Player : MonoBehaviour
         if (collider.gameObject.tag == "EnemyAttack")
         {
             HP -= 30;
-            HPimage.fillAmount =(float) HP/ MaxHP;
+            HPBarG.fillAmount =(float) HP/ MaxHP;
             this.animator.SetTrigger(key_isDamage);
         }
         if(collider.gameObject.tag=="BossEye")
@@ -377,6 +383,6 @@ public class Player : MonoBehaviour
     public void PlayerRecovery()
     {
         HP = MaxHP;
-        HPimage.fillAmount = (float)HP / MaxHP;
+        HPBarG.fillAmount = (float)HP / MaxHP;
     }
 }
