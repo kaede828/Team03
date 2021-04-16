@@ -83,6 +83,9 @@ public class Player : MonoBehaviour
 
     CharacterController characterController;
 
+    //パーティクル
+    public GameObject particle;
+
     //倒した敵の数
     public int Kill=0;
     public static int KillEnemy=0;
@@ -247,6 +250,8 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
+
+                particle.SetActive(false);
                 this.tag = ("Player");
                 break;
             case 1:
@@ -255,6 +260,8 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
+
+                particle.SetActive(false);
                 this.tag = ("Player");
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
@@ -272,19 +279,23 @@ public class Player : MonoBehaviour
                 Attack1.SetActive(true);
                 Sword.SetActive(true);
                 BackSword.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 5:
                 Attack2.SetActive(true);
                 Attack1.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 6:
                 Attack3.SetActive(true);
                 Attack2.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 7:
                 Attack4.SetActive(true);
                 Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 8:
                 Sword.SetActive(true);
