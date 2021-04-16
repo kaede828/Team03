@@ -68,6 +68,14 @@ public class Player : MonoBehaviour
     string clipName;
     int animatorNum;
 
+    //パーティクル
+    public GameObject particle;
+    public ParticleSystem pa;
+
+    int Cnt;
+
+    [SerializeField] GameObject ParticleObj;
+
     CharacterController characterController;
 
     //倒した敵の数
@@ -82,9 +90,13 @@ public class Player : MonoBehaviour
         PowerUpMenu.SetActive(false);
 
         HP = MaxHP;
+
+        pa = GetComponent<ParticleSystem>();
+        // particle.Stop();
+        //particle.SetActive(false);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         bossAttack = false;
 
@@ -199,7 +211,7 @@ public class Player : MonoBehaviour
                 
             }
         }
-
+        Debug.Log("anim"+animatorNum);
         //雑な攻撃の当たり判定
         switch (animatorNum)
         {
@@ -208,33 +220,47 @@ public class Player : MonoBehaviour
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                particle.SetActive(false);
                 this.tag = ("Player");
+                //pa.Play();
+                Cnt = 0;
                 break;
             case 1:
                 Attack1.SetActive(false);
                 Attack2.SetActive(false);
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
+                particle.SetActive(false);
+                pa.Stop();
                 this.tag = ("Player");
+                Cnt = 0;
                 break;
             case 3:
                 this.tag = ("PlayerAvert");
                 break;
             case 4:
                 Attack1.SetActive(true);
+                Debug.Log("moveX");
+                //Instantiate(particle,new Vector3(LastPos.x, LastPos.y+1, LastPos.z),Quaternion.identity);
+                particle.SetActive(true);
+                //pa.Play();
+                Cnt += 1;
                 break;
             case 5:
                 Attack2.SetActive(true);
                 Attack1.SetActive(false);
+                Cnt += 1;
                 break;
             case 6:
                 Attack3.SetActive(true);
                 Attack2.SetActive(false);
+                Cnt += 1;
                 break;
             case 7:
                 Attack4.SetActive(true);
                 Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
+                Cnt += 1;
                 break;
         }
 
@@ -292,6 +318,20 @@ public class Player : MonoBehaviour
 
         KillEnemy = Kill;
 
+        //Debug.Log("カウント"+Cnt);
+        //if(Cnt == 1)
+        //{
+        //    pa.Play();
+        //}
+
+        if(Input.GetKeyDown("joysticke button 0"))
+        {
+            pa.Play();
+        }
+        if (Input.GetKey(KeyCode.G))
+        {
+            pa.Play();
+        }
     }
     //攻撃の当たり判定を消す
     private void ColliderReset()
