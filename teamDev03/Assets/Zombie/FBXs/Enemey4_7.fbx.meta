@@ -13,6 +13,12 @@ ModelImporter:
       74: -8918769913268971200
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death"
   - first:
+      74: 2247942637489774909
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2"
+  - first:
+      74: 3792610654054888678
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2.001"
+  - first:
       74: -9093555803290530175
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Idle"
   - first:
@@ -21,9 +27,6 @@ ModelImporter:
   - first:
       74: -2054729920978899392
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Walk"
-  - first:
-      74: 6756163884670735776
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30AF\u30B7\u30E7\u30F3"
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -160,6 +163,64 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2"
+      takeName: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2"
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2.001"
+      takeName: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Death2.001"
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Idle"
       takeName: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Enemy_Idle"
       internalID: 0
@@ -220,35 +281,6 @@ ModelImporter:
     - serializedVersion: 16
       name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Walk"
       takeName: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Walk"
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 39
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30AF\u30B7\u30E7\u30F3"
-      takeName: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30AF\u30B7\u30E7\u30F3"
       internalID: 0
       firstFrame: 0
       lastFrame: 39

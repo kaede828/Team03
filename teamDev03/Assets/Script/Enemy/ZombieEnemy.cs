@@ -12,7 +12,8 @@ public class ZombieEnemy : MonoBehaviour
         Chase,//追いかける
         Attack,//攻撃
         Freeze,//攻撃後硬直
-        Damege//ダメージ
+        Damege,//ダメージ
+        Death,//死亡
     };
 
     //プレイヤー
@@ -107,7 +108,7 @@ public class ZombieEnemy : MonoBehaviour
             elapsedTime += Time.deltaTime;
 
             //時間になったら当たり判定を出す
-            if(elapsedTime > attack)
+            if (elapsedTime > attack)
             {
                 AttackStart();
             }
@@ -137,28 +138,43 @@ public class ZombieEnemy : MonoBehaviour
                 }
             }
         }
-        else if(state == EnemyState.Damege)
+        else if (state == EnemyState.Damege)
         {
             elapsedTime += Time.deltaTime;
 
-            //硬直が終わったら追いかける
-            if(elapsedTime > damageTime)
-            {
-                //攻撃をくらった後にHpが0以下なら消す
-                if (enemyHp <= 0)
-                {
-                    player.Point += 50;
-                    player.Kill += 1;
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    SetState(EnemyState.Chase);
-                }
-            }
-            
-        }
 
+            //攻撃をくらったときにhpが0以下ならDeathへ
+            if (enemyHp <= 0)
+            {
+                SetState(EnemyState.Death);
+            }
+
+            //硬直が終わったら追いかける
+            if (elapsedTime > damageTime)
+            {
+                ////攻撃をくらった後にHpが0以下なら消す
+                //if (enemyHp <= 0)
+                //{
+                //    player.Point += 50;
+                //    player.Kill += 1;
+                //    Destroy(this.gameObject);
+                //}
+                //else
+                //{
+                SetState(EnemyState.Chase);
+                //}
+            }
+        }
+        else if (state == EnemyState.Death)
+        {
+            //アニメーションが終わるのを待ってEnemyを消す
+            if (elapsedTime > damageTime)
+            {
+                player.Point += 50;
+                player.Kill += 1;
+                Destroy(this.gameObject);
+            }
+        }
 
         //navimeshの位置にEnemyを合わせる
         agent.nextPosition = transform.position;
@@ -225,6 +241,10 @@ public class ZombieEnemy : MonoBehaviour
             animator.ResetTrigger("Attack");
             //ダメージを受けたアニメーション
             animator.SetTrigger("Damage");
+        }
+        else if(tempState == EnemyState.Death)
+        {
+
         }
     }
 
