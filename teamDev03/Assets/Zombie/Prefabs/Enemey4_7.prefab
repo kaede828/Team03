@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 281449746823481316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 2519428831772853201}
   - {fileID: 6624152052292499233}
@@ -94,7 +94,7 @@ MonoBehaviour:
   state: 0
   isAttack: 0
   isDamage: 0
-  sphereCollider: {fileID: 0}
+  sphereCollider: {fileID: 9185577692514473975}
 --- !u!136 &-810632268664025839
 CapsuleCollider:
   m_ObjectHideFlags: 0
