@@ -80,7 +80,7 @@ public class ZombieEnemy : MonoBehaviour
     {
         
         //ダメージを受けてエネミーステートがすでにだめーじじゃなかったら
-        if (isDamage&& state != EnemyState.Damege)
+        if (isDamage&& state != EnemyState.Damege && state != EnemyState.Death)
         {
             SetState(EnemyState.Damege);
             isDamage = false;
@@ -167,6 +167,7 @@ public class ZombieEnemy : MonoBehaviour
         }
         else if (state == EnemyState.Death)
         {
+            elapsedTime += Time.deltaTime;
             //アニメーションが終わるのを待ってEnemyを消す
             if (elapsedTime > damageTime)
             {
@@ -244,6 +245,10 @@ public class ZombieEnemy : MonoBehaviour
         }
         else if(tempState == EnemyState.Death)
         {
+            elapsedTime = 0f;
+            //攻撃状態の場合アニメーションを中断する
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Death");
 
         }
     }
