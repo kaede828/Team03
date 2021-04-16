@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class State : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class State : MonoBehaviour
     [SerializeField] GameObject REAL;
     [SerializeField] GameObject DREAM;
     [SerializeField] GameObject GAP;
+
+    [SerializeField] Image GapImage;
+    [SerializeField] Image DreamImage;
+    [SerializeField] Image RealImage;
+
 
     //プレイヤー
     GameObject Player;
@@ -134,6 +140,7 @@ public class State : MonoBehaviour
             REAL.SetActive(true);
             DREAM.SetActive(false);
             GAP.SetActive(false);
+            RealImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
         if (gameTime >= 10 && gameTime <= 20)
@@ -143,6 +150,7 @@ public class State : MonoBehaviour
             REAL.SetActive(false);
             DREAM.SetActive(true);
             GAP.SetActive(false);
+            DreamImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
         if (gameTime >= 20 && gameTime <= 30)
@@ -152,12 +160,16 @@ public class State : MonoBehaviour
             REAL.SetActive(false);
             DREAM.SetActive(false);
             GAP.SetActive(true);
+            GapImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
         if (gameTime >= 30)
         {
             Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
+            RealImage.fillAmount = 1;
+            DreamImage.fillAmount = 1;
+            GapImage.fillAmount = 1;
         }
 
     }

@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
 
     CharacterController characterController;
 
+    //音鳴らす
+    AudioSource audioSource;
+    [SerializeField] AudioClip SE1;
+    bool ONE=true;
+
     //パーティクル
     public GameObject particle;
 
@@ -93,6 +98,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         DefaultSpeed = Speed;
         PowerUpMenu.SetActive(false);
@@ -227,6 +233,7 @@ public class Player : MonoBehaviour
             {
                 this.animator.SetTrigger(key_isAttack);
                 
+
             }
             //スキル1
             if(Skill1==true)
@@ -234,8 +241,8 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown("joystick button 3"))
                 {
                     this.animator.SetTrigger(key_isSkill);
-                    //SkillTime = 0;
-                    //SkillImage.fillAmount = 0;
+                    SkillTime = 0;
+                    SkillImage.fillAmount = 0;
                 }
             }
            
@@ -250,7 +257,6 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
-
                 particle.SetActive(false);
                 this.tag = ("Player");
                 break;
@@ -260,7 +266,6 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
-
                 particle.SetActive(false);
                 this.tag = ("Player");
                 Sword.SetActive(false);
