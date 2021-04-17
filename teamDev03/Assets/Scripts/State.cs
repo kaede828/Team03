@@ -35,6 +35,9 @@ public class State : MonoBehaviour
     //クリスタルのマテリアル
     public Material mat;
 
+    //剣のマテリアル
+    public Material swordMat;
+
     enum Game_Type
     {
         real = 0,
@@ -64,11 +67,20 @@ public class State : MonoBehaviour
             //初期値
             mat.SetColor("_MyEmissionColor", new Color(0.0f, 0.8f, 1.0f, 0.0f));
         }
+
+        if(swordMat.HasProperty("_MyEmissionColor"))
+        {
+            //初期値
+            swordMat.SetColor("_MyEmissionColor", new Color(0.0f, 1.0f, 0.7f, 0.0f));
+        }
+
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         gameTime += Time.deltaTime;
         fogDen = Mathf.Clamp(fogDen, Min, Max);
         Debug.Log(fogDen);
@@ -86,6 +98,7 @@ public class State : MonoBehaviour
 
                 //シェーダーの値変更
                 mat.SetColor("_MyEmissionColor", new Color(0.0f, 0.8f, 1.0f, 0.0f));
+                swordMat.SetColor("_MyEmissionColor", new Color(0.0f, 1.0f, 0.7f, 0.0f));
                 break;
 
             case Game_Type.dreame:
@@ -109,6 +122,7 @@ public class State : MonoBehaviour
 
                 //シェーダーの値変更
                 mat.SetColor("_MyEmissionColor", new Color(1.0f, 0, 0.5f));
+                swordMat.SetColor("_MyEmissionColor", new Color(1.0f, 1.0f, 1.0f, 0.0f));
                 break;
 
             case Game_Type.interval:
@@ -125,6 +139,7 @@ public class State : MonoBehaviour
 
                 //シェーダーの値変更
                 mat.SetColor("_MyEmissionColor", new Color(1.0f, 1.0f, 0));
+                swordMat.SetColor("_MyEmissionColor", new Color(0.0f, 1.0f, 0.7f, 0.0f));
                 break;
         }
 
