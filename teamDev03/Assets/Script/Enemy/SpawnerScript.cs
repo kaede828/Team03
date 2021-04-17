@@ -13,7 +13,7 @@ public class SpawnerScript : MonoBehaviour
     //　この場所から出現する敵の数
     [SerializeField] int maxNumOfEnemys;
     //　今何人の敵を出現させたか（総数）
-    private int numberOfEnemys;
+    [SerializeField] private int numberOfEnemys;
     //　待ち時間計測フィールド
     private float elapsedTime;
     //  このスポナーから敵を出現させることが出来るかどうか
@@ -31,6 +31,7 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //　この場所から出現する最大数を超えてたら何もしない
         if (numberOfEnemys >= maxNumOfEnemys || isSpawn == false)
         {
@@ -43,14 +44,12 @@ public class SpawnerScript : MonoBehaviour
         if (elapsedTime > appearNextTime)
         {
             elapsedTime = 0f;
-
             AppearEnemy();
+
+
         }
 
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            DestroyEnemy();
-        }
+ 
     }
     //　敵出現メソッド
     void AppearEnemy()

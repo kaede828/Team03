@@ -90,11 +90,17 @@ MonoBehaviour:
   attackTime: 1.5
   attack: 1
   damageTime: 1.5
-  enemyHp: 3
+  enemyHp: 15
   state: 0
+  damagestate: 0
   isAttack: 0
   isDamage: 0
   sphereCollider: {fileID: 9185577692514473975}
+  cutSE1: {fileID: 8300000, guid: 20b52ce5fd8afc74ca8ed7bdaaf1e4f2, type: 3}
+  cutSE2: {fileID: 8300000, guid: 626da6d0e2df54d4ba8c713b67eec3f6, type: 3}
+  cutSE3: {fileID: 8300000, guid: c6bcb31d81fac5940a0ae38456aeaf38, type: 3}
+  cutSE4: {fileID: 8300000, guid: 73b17360cacfdbb4dac622df7b9240e8, type: 3}
+  specialSE: {fileID: 8300000, guid: e246dad22ba77314488419783132c59b, type: 3}
 --- !u!136 &-810632268664025839
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -838,11 +844,11 @@ GameObject:
   - component: {fileID: 9185577692514473975}
   m_Layer: 0
   m_Name: EnemyAttack
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4305164344643290696
 Transform:
   m_ObjectHideFlags: 0
@@ -866,7 +872,7 @@ SphereCollider:
   m_GameObject: {fileID: 4852967626531676602}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}

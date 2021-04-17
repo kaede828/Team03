@@ -153,6 +153,13 @@ public class State : MonoBehaviour
                 mesh.enabled = true;
                 col.enabled = true;
                 // attackCol.enabled = true;
+                for (int i = 0; i < spawner.Length; i++)
+                {
+                    //夢に移行するときにスポナーからすべての敵を消滅させる
+                    spawner[i].DestroyEnemy();
+                    //スポナーから敵が出現しないよう設定
+                    spawner[i].SpawnFalse();
+                }
 
                 //シェーダーの値変更
                 mat.SetColor("_MyEmissionColor", new Color(1.0f, 1.0f, 0));
