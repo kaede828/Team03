@@ -261,6 +261,7 @@ public class Boss : MonoBehaviour
 
     void HAttack()
     {
+        anima.SetBool("Attack", false);
         AttackStart();
         anima.SetBool("Run", true);
         anima.SetBool("Idle", false);
