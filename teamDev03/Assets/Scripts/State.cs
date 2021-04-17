@@ -46,7 +46,7 @@ public class State : MonoBehaviour
 
     public ParticleSystem particle;
 
-    Color dreamcolor = new Color(0, 0, 0, 1);
+    Color dreamcolor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     Color normalcolor = new Color(0.0f, 1.0f, 0.7f, 1.0f);
 
     enum Game_Type
