@@ -21,4 +21,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - _MyEmissionColor: {r: 1, g: 1, b: 1, a: 0}
+    - _MyEmissionColor: {r: 0, g: 1, b: 0.7, a: 0}

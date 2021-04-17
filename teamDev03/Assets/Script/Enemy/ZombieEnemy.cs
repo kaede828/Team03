@@ -16,6 +16,16 @@ public class ZombieEnemy : MonoBehaviour
         Death,//死亡
     };
 
+    //Enemyがくらった攻撃がどれかを判定する
+    public enum EnemyDamageState
+    {
+        Attack1,
+        Attack2,
+        Attack3,
+        Attack4,
+        Special,
+    }
+
     //プレイヤー
     [SerializeField]
     GameObject TargetObject;
@@ -34,7 +44,7 @@ public class ZombieEnemy : MonoBehaviour
 
     //　HP
     [SerializeField]
-    private int enemyHp = 3;
+    private int enemyHp = 15;
 
     //　経過時間
     private float elapsedTime;
@@ -44,6 +54,9 @@ public class ZombieEnemy : MonoBehaviour
     //　敵の状態
     [SerializeField]
     private EnemyState state;
+    //　敵の状態
+    [SerializeField]
+    private EnemyDamageState damagestate;
 
     //プレイヤーを攻撃できるか
     [SerializeField]
@@ -239,16 +252,56 @@ public class ZombieEnemy : MonoBehaviour
         {
             elapsedTime = 0f;
             //hpを減らす
-            enemyHp -= 1; 
+            if (damagestate == EnemyDamageState.Attack1)
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE1, transform.position);
+                enemyHp -= 1;
+            }
+            else if(damagestate == EnemyDamageState.Attack2)
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE2, transform.position);
+                enemyHp -= 2;
+            }
+            else if (damagestate == EnemyDamageState.Attack3)
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE3, transform.position);
+                enemyHp -= 4;
+                //攻撃状態の場合アニメーションを中断する
+                animator.ResetTrigger("Attack");
+                //ダメージを受けたアニメーション
+                animator.SetTrigger("Damage");
+                //攻撃の当たり判定消す
+                AttackEnd();
+            }
+            else if (damagestate == EnemyDamageState.Attack4)
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE4, transform.position);
+                enemyHp -= 6;
+                //攻撃状態の場合アニメーションを中断する
+                animator.ResetTrigger("Attack");
+                //ダメージを受けたアニメーション
+                animator.SetTrigger("Damage");
+                //攻撃の当たり判定消す
+                AttackEnd();
+            }
+            else if (damagestate == EnemyDamageState.Special)
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(specialSE, transform.position);
+                enemyHp -= 15;
+                //攻撃状態の場合アニメーションを中断する
+                animator.ResetTrigger("Attack");
+                //ダメージを受けたアニメーション
+                animator.SetTrigger("Damage");
+                //攻撃の当たり判定消す
+                AttackEnd();
+            }
             //移動をできなくする
             agent.updatePosition = false;
-            //攻撃の当たり判定消す
-            AttackEnd();
-
-            //攻撃状態の場合アニメーションを中断する
-            animator.ResetTrigger("Attack");
-            //ダメージを受けたアニメーション
-            animator.SetTrigger("Damage");
         }
         else if(tempState == EnemyState.Death)
         {
@@ -277,28 +330,28 @@ public class ZombieEnemy : MonoBehaviour
             isDamage = true;
             if (collider.gameObject.name == "Attack1")
             {
-                // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE1, transform.position);
+
+                damagestate = EnemyDamageState.Attack1;
             }
             else if (collider.gameObject.name == "Attack2")
             {
-                // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE2, transform.position);
+
+                damagestate = EnemyDamageState.Attack2;
             }
             else if (collider.gameObject.name == "Attack3")
             {
-                // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE3, transform.position);
+
+                damagestate = EnemyDamageState.Attack3;
             }
             else if (collider.gameObject.name == "Attack4")
             {
-                // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE4, transform.position);
+
+                damagestate = EnemyDamageState.Attack4;
             }
             else if (collider.gameObject.name == "AttackSkill1")
             {
-                // オーディオを再生
-                AudioSource.PlayClipAtPoint(specialSE, transform.position);
+
+                damagestate = EnemyDamageState.Special;
             }
         }
     }

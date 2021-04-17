@@ -90,8 +90,9 @@ MonoBehaviour:
   attackTime: 1.5
   attack: 1
   damageTime: 1.5
-  enemyHp: 3
+  enemyHp: 15
   state: 0
+  damagestate: 0
   isAttack: 0
   isDamage: 0
   sphereCollider: {fileID: 9185577692514473975}

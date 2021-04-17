@@ -46,6 +46,12 @@ public class Boss : MonoBehaviour
     private GameObject siya;
     //[SerializeField]
     //private MeshRenderer mesh1;
+    // 切られたときの効果音
+    public AudioClip cutSE1;
+    public AudioClip cutSE2;
+    public AudioClip cutSE3;
+    public AudioClip cutSE4;
+    public AudioClip specialSE;
 
     void Start()
     {
@@ -318,6 +324,31 @@ public class Boss : MonoBehaviour
         if (collider.gameObject.tag == "PlayerAttack")
         {
             isDamage = true;
+            if (collider.gameObject.name == "Attack1")
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE1, transform.position);
+            }
+            else if (collider.gameObject.name == "Attack2")
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE2, transform.position);
+            }
+            else if (collider.gameObject.name == "Attack3")
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE3, transform.position);
+            }
+            else if (collider.gameObject.name == "Attack4")
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(cutSE4, transform.position);
+            }
+            else if (collider.gameObject.name == "AttackSkill1")
+            {
+                // オーディオを再生
+                AudioSource.PlayClipAtPoint(specialSE, transform.position);
+            }
         }
 
     }
