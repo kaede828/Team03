@@ -13508,6 +13508,7 @@ MonoBehaviour:
   DreamImage: {fileID: 1632466071}
   RealImage: {fileID: 1044828449}
   mat: {fileID: 2100000, guid: d7e58b92734a2154b94faaf8fe82b75d, type: 2}
+  swordMat: {fileID: 2100000, guid: 9e92ad04addae844eab47c01d9890e3a, type: 2}
 --- !u!4 &1308771681
 Transform:
   m_ObjectHideFlags: 0
@@ -14871,12 +14872,12 @@ PrefabInstance:
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.013378234
+      value: 0.0133782495
       objectReference: {fileID: 0}
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.004571488
+      value: -0.004571494
       objectReference: {fileID: 0}
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
@@ -32936,12 +32937,12 @@ PrefabInstance:
     - target: {fileID: 7187638572731148189, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.013310273
+      value: 0.013310274
       objectReference: {fileID: 0}
     - target: {fileID: 7187638572731148189, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.004765675
+      value: -0.004765676
       objectReference: {fileID: 0}
     - target: {fileID: 7187638572835367722, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
