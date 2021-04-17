@@ -83,6 +83,14 @@ public class Player : MonoBehaviour
 
     CharacterController characterController;
 
+    //音鳴らす
+    AudioSource audioSource;
+    [SerializeField] AudioClip SE1;
+    bool ONE=true;
+
+    //パーティクル
+    public GameObject particle;
+
     //倒した敵の数
     public int Kill=0;
     public static int KillEnemy=0;
@@ -90,6 +98,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         DefaultSpeed = Speed;
         PowerUpMenu.SetActive(false);
@@ -224,6 +233,7 @@ public class Player : MonoBehaviour
             {
                 this.animator.SetTrigger(key_isAttack);
                 
+
             }
             //スキル1
             if(Skill1==true)
@@ -231,8 +241,8 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown("joystick button 3"))
                 {
                     this.animator.SetTrigger(key_isSkill);
-                    //SkillTime = 0;
-                    //SkillImage.fillAmount = 0;
+                    SkillTime = 0;
+                    SkillImage.fillAmount = 0;
                 }
             }
            
@@ -247,6 +257,7 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
+                particle.SetActive(false);
                 this.tag = ("Player");
                 break;
             case 1:
@@ -255,6 +266,7 @@ public class Player : MonoBehaviour
                 Attack3.SetActive(false);
                 Attack4.SetActive(false);
                 AttackSkill1.SetActive(false);
+                particle.SetActive(false);
                 this.tag = ("Player");
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
@@ -272,19 +284,23 @@ public class Player : MonoBehaviour
                 Attack1.SetActive(true);
                 Sword.SetActive(true);
                 BackSword.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 5:
                 Attack2.SetActive(true);
                 Attack1.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 6:
                 Attack3.SetActive(true);
                 Attack2.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 7:
                 Attack4.SetActive(true);
                 Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
+                particle.SetActive(true);
                 break;
             case 8:
                 Sword.SetActive(true);
