@@ -16737,7 +16737,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-56046
+  m_Name: pb_Mesh-5898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33374,12 +33374,6 @@ PrefabInstance:
       objectReference: {fileID: 1502872072}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d288ff71269b7e45bab7ac024790d00, type: 3}
---- !u!1 &7470481406001819156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4480010607847645276, guid: 1d288ff71269b7e45bab7ac024790d00,
-    type: 3}
-  m_PrefabInstance: {fileID: 7470481406001819155}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8166223212812765801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33401,7 +33395,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 7470481406001819156}
+      objectReference: {fileID: 1271528663}
     - target: {fileID: 8166223211894213417, guid: 459cbed2e7faff444a32dcb33902260f,
         type: 3}
       propertyPath: points.Array.data[0]
