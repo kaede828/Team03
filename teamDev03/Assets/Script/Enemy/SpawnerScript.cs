@@ -13,7 +13,7 @@ public class SpawnerScript : MonoBehaviour
     //　この場所から出現する敵の数
     [SerializeField] int maxNumOfEnemys;
     //　今何人の敵を出現させたか（総数）
-    private int numberOfEnemys;
+    [SerializeField] private int numberOfEnemys;
     //　待ち時間計測フィールド
     private float elapsedTime;
     //  このスポナーから敵を出現させることが出来るかどうか
