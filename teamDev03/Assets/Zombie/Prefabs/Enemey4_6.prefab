@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 3539427167422415022}
   m_Layer: 0
   m_Name: Enemey4_6
-  m_TagString: Untagged
+  m_TagString: PlayerSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,9 +1098,15 @@ MonoBehaviour:
   damageTime: 1.5
   enemyHp: 3
   state: 0
+  damagestate: 0
   isAttack: 0
   isDamage: 0
   sphereCollider: {fileID: 0}
+  cutSE1: {fileID: 0}
+  cutSE2: {fileID: 0}
+  cutSE3: {fileID: 0}
+  cutSE4: {fileID: 0}
+  specialSE: {fileID: 0}
 --- !u!136 &2737927374262699537
 CapsuleCollider:
   m_ObjectHideFlags: 0

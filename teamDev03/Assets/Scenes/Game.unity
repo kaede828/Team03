@@ -14872,12 +14872,12 @@ PrefabInstance:
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0133782495
+      value: 0.013378234
       objectReference: {fileID: 0}
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.004571494
+      value: -0.004571488
       objectReference: {fileID: 0}
     - target: {fileID: 5799091458183866739, guid: 7e89678bbf97ac04ca3ff885156c7989,
         type: 3}
@@ -32937,12 +32937,12 @@ PrefabInstance:
     - target: {fileID: 7187638572731148189, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.013310274
+      value: 0.013310273
       objectReference: {fileID: 0}
     - target: {fileID: 7187638572731148189, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.004765676
+      value: -0.004765675
       objectReference: {fileID: 0}
     - target: {fileID: 7187638572835367722, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
@@ -32994,6 +32994,11 @@ PrefabInstance:
       propertyPath: PowerUpMenu
       value: 
       objectReference: {fileID: 1502872072}
+    - target: {fileID: 7187638573484373620, guid: f6cfe7938ffd621478334ac0b8948832,
+        type: 3}
+      propertyPath: m_IgnoreTag
+      value: PlayerSword
+      objectReference: {fileID: 0}
     - target: {fileID: 7187638573484373621, guid: f6cfe7938ffd621478334ac0b8948832,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -33506,6 +33511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166223211894213461, guid: 459cbed2e7faff444a32dcb33902260f,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerSword
       objectReference: {fileID: 0}
     - target: {fileID: 8166223212048237932, guid: 459cbed2e7faff444a32dcb33902260f,
         type: 3}

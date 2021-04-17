@@ -22,4 +22,4 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 0, g: 0.12823725, b: 1, a: 1}
-    - _MyEmissionColor: {r: 1, g: 1, b: 0, a: 1}
+    - _MyEmissionColor: {r: 0, g: 0.8, b: 1, a: 0}

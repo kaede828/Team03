@@ -156,36 +156,36 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 10)
+        if (gameTime >= 0 && gameTime <= 60)
         {
             type = Game_Type.real;
             REAL.SetActive(true);
             DREAM.SetActive(false);
             GAP.SetActive(false);
-            RealImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            RealImage.fillAmount -= 1.0f / 60 * Time.deltaTime;
         }
 
-        if (gameTime >= 10 && gameTime <= 20)
+        if (gameTime >= 60 && gameTime <= 120)
         {
             matFlag1 = true;
             type = Game_Type.dreame;
             REAL.SetActive(false);
             DREAM.SetActive(true);
             GAP.SetActive(false);
-            DreamImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            DreamImage.fillAmount -= 1.0f / 60 * Time.deltaTime;
         }
 
-        if (gameTime >= 20 && gameTime <= 30)
+        if (gameTime >= 120 && gameTime <= 150)
         {
             matFlag1 = false;
             type = Game_Type.interval;
             REAL.SetActive(false);
             DREAM.SetActive(false);
             GAP.SetActive(true);
-            GapImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            GapImage.fillAmount -= 1.0f / 30 * Time.deltaTime;
         }
 
-        if (gameTime >= 30)
+        if (gameTime >= 150)
         {
             Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
