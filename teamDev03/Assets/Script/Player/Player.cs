@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
     //倒した敵の数
     public int Kill=0;
     public static int KillEnemy=0;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -104,6 +105,7 @@ public class Player : MonoBehaviour
         PowerUpMenu.SetActive(false);
 
         HP = MaxHP;
+
     }
 
     void FixedUpdate()
