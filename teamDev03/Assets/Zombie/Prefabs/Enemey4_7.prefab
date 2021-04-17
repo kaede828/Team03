@@ -95,6 +95,11 @@ MonoBehaviour:
   isAttack: 0
   isDamage: 0
   sphereCollider: {fileID: 9185577692514473975}
+  cutSE1: {fileID: 8300000, guid: 20b52ce5fd8afc74ca8ed7bdaaf1e4f2, type: 3}
+  cutSE2: {fileID: 8300000, guid: 626da6d0e2df54d4ba8c713b67eec3f6, type: 3}
+  cutSE3: {fileID: 8300000, guid: c6bcb31d81fac5940a0ae38456aeaf38, type: 3}
+  cutSE4: {fileID: 8300000, guid: 73b17360cacfdbb4dac622df7b9240e8, type: 3}
+  specialSE: {fileID: 8300000, guid: e246dad22ba77314488419783132c59b, type: 3}
 --- !u!136 &-810632268664025839
 CapsuleCollider:
   m_ObjectHideFlags: 0
