@@ -169,7 +169,7 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 1)
+        if (gameTime >= 0 && gameTime <= 60)
         {
             type = Game_Type.real;
             REAL.SetActive(true);
@@ -178,7 +178,7 @@ public class State : MonoBehaviour
             RealImage.fillAmount -= 1.0f / 60 * Time.deltaTime;
         }
 
-        if (gameTime >= 1 && gameTime <= 120)
+        if (gameTime >= 60 && gameTime <= 120)
         {
             matFlag1 = true;
             type = Game_Type.dreame;

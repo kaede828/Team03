@@ -94,7 +94,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(aiCountY);
+        Debug.Log(isAttack);
         if (State.matFlag1 == false)
         {
             //AttackEnd2();
@@ -273,7 +273,7 @@ public class Boss : MonoBehaviour
     {
         AttackEnd2();
         anima.SetBool("Attack", false);
-        //AttackStart();
+        AttackStart();
         anima.SetBool("Run", true);
         anima.SetBool("Idle", false);
         anima.SetBool("Walk", false);
