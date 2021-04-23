@@ -43,7 +43,7 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private BoxCollider boxCollider2;
     [SerializeField]
-    private GameObject siya;
+    // private GameObject siya;
     //[SerializeField]
     //private MeshRenderer mesh1;
     // 切られたときの効果音
@@ -97,7 +97,7 @@ public class Boss : MonoBehaviour
         Debug.Log(aiCountY);
         if (State.matFlag1 == false)
         {
-            AttackEnd2();
+            //AttackEnd2();
             switch (aiCountY)
             {
                 case 1:
@@ -250,10 +250,14 @@ public class Boss : MonoBehaviour
     {
         AttackEnd2();
         anima.SetBool("Idle", false);
-        agent.SetDestination(playerPos);
+        anima.SetBool("Run", true);
+        agent.speed = 10;
+        agent.destination = player.transform.position;
         if (isAttack)
         {
+            agent.speed = 0;
             AttackStart();
+            anima.SetBool("Run", false);
             anima.SetBool("Attack", true);
         }
         elapsedTime += Time.deltaTime;
@@ -267,8 +271,9 @@ public class Boss : MonoBehaviour
 
     void HAttack()
     {
+        AttackEnd2();
         anima.SetBool("Attack", false);
-        AttackStart();
+        //AttackStart();
         anima.SetBool("Run", true);
         anima.SetBool("Idle", false);
         anima.SetBool("Walk", false);
