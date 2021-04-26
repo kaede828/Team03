@@ -169,7 +169,7 @@ public class State : MonoBehaviour
                 break;
         }
 
-        if (gameTime >= 0 && gameTime <= 10)
+        if (gameTime >= 0 && gameTime <= 60)
         {
             type = Game_Type.real;
             REAL.SetActive(true);
@@ -178,7 +178,7 @@ public class State : MonoBehaviour
             RealImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
-        if (gameTime >= 10 && gameTime <= 20)
+        if (gameTime >= 60 && gameTime <= 120)
         {
             matFlag1 = true;
             type = Game_Type.dreame;
@@ -188,7 +188,7 @@ public class State : MonoBehaviour
             DreamImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
-        if (gameTime >= 20 && gameTime <= 30)
+        if (gameTime >= 120 && gameTime <= 150)
         {
             matFlag1 = false;
             type = Game_Type.interval;
@@ -198,7 +198,7 @@ public class State : MonoBehaviour
             GapImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
         }
 
-        if (gameTime >= 30)
+        if (gameTime >= 150)
         {
             Player.GetComponent<Player>().PlayerRecovery();
             gameTime = 0;
