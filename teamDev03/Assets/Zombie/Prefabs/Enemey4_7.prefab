@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2875357150453296158}
   m_Layer: 0
   m_Name: Enemey4_7
-  m_TagString: Untagged
+  m_TagString: PlayerSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

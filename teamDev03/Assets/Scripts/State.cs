@@ -175,7 +175,7 @@ public class State : MonoBehaviour
             REAL.SetActive(true);
             DREAM.SetActive(false);
             GAP.SetActive(false);
-            RealImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            RealImage.fillAmount -= 1.0f / 60 * Time.deltaTime;
         }
 
         if (gameTime >= 60 && gameTime <= 120)
@@ -185,7 +185,7 @@ public class State : MonoBehaviour
             REAL.SetActive(false);
             DREAM.SetActive(true);
             GAP.SetActive(false);
-            DreamImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            DreamImage.fillAmount -= 1.0f / 60 * Time.deltaTime;
         }
 
         if (gameTime >= 120 && gameTime <= 150)
@@ -195,7 +195,7 @@ public class State : MonoBehaviour
             REAL.SetActive(false);
             DREAM.SetActive(false);
             GAP.SetActive(true);
-            GapImage.fillAmount -= 1.0f / 10 * Time.deltaTime;
+            GapImage.fillAmount -= 1.0f / 30 * Time.deltaTime;
         }
 
         if (gameTime >= 150)
