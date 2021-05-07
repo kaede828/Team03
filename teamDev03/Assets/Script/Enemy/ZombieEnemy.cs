@@ -71,12 +71,12 @@ public class ZombieEnemy : MonoBehaviour
     [SerializeField]
     private SphereCollider sphereCollider;
 
-    // 切られたときの効果音
-    public AudioClip cutSE1;
-    public AudioClip cutSE2;
-    public AudioClip cutSE3;
-    public AudioClip cutSE4;
-    public AudioClip specialSE;
+    //// 切られたときの効果音
+    //public AudioClip cutSE1;
+    //public AudioClip cutSE2;
+    //public AudioClip cutSE3;
+    //public AudioClip cutSE4;
+    //public AudioClip specialSE;
 
     //追加
     GameObject Player;
@@ -255,19 +255,19 @@ public class ZombieEnemy : MonoBehaviour
             if (damagestate == EnemyDamageState.Attack1)
             {
                 // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE1, transform.position);
+                //AudioSource.PlayClipAtPoint(cutSE1, transform.position);
                 enemyHp -= 1;
             }
             else if(damagestate == EnemyDamageState.Attack2)
             {
                 // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE2, transform.position);
+                //AudioSource.PlayClipAtPoint(cutSE2, transform.position);
                 enemyHp -= 2;
             }
             else if (damagestate == EnemyDamageState.Attack3)
             {
                 // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE3, transform.position);
+                //AudioSource.PlayClipAtPoint(cutSE3, transform.position);
                 enemyHp -= 4;
                 //攻撃状態の場合アニメーションを中断する
                 animator.ResetTrigger("Attack");
@@ -279,7 +279,7 @@ public class ZombieEnemy : MonoBehaviour
             else if (damagestate == EnemyDamageState.Attack4)
             {
                 // オーディオを再生
-                AudioSource.PlayClipAtPoint(cutSE4, transform.position);
+                //AudioSource.PlayClipAtPoint(cutSE4, transform.position);
                 enemyHp -= 6;
                 //攻撃状態の場合アニメーションを中断する
                 animator.ResetTrigger("Attack");
@@ -291,7 +291,7 @@ public class ZombieEnemy : MonoBehaviour
             else if (damagestate == EnemyDamageState.Special)
             {
                 // オーディオを再生
-                AudioSource.PlayClipAtPoint(specialSE, transform.position);
+                //AudioSource.PlayClipAtPoint(specialSE, transform.position);
                 enemyHp -= 15;
                 //攻撃状態の場合アニメーションを中断する
                 animator.ResetTrigger("Attack");
