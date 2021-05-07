@@ -407,6 +407,26 @@ public class Player : MonoBehaviour
                     }
                                    
                     break;
+                case 1:
+                    //体力上限アップ
+                    if (Point >= 500)
+                    {
+                        if (Input.GetKeyDown("joystick button 1"))
+                        {
+                            MaxHP += 50;
+                            HP += 50;
+                            Point -= 500;
+                        }
+                        GreenCursor.SetActive(true);
+                        RedCursor.SetActive(false);
+                    }
+                    else
+                    {
+                        GreenCursor.SetActive(false);
+                        RedCursor.SetActive(true);
+                    }
+
+                    break;
             }           
         }
 
