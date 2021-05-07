@@ -9,7 +9,9 @@ public class PowerUp : MonoBehaviour
     [SerializeField] GameObject Cursor2;
     [SerializeField] GameObject Cursor3;
     [SerializeField] GameObject Cursor4;
-    public float SelectNum=0;
+    public int SelectNum=0;
+    int Num=0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,25 +28,22 @@ public class PowerUp : MonoBehaviour
             float dpv = Input.GetAxis("D_PAD_V");//上-1 下+1
             if (dpv == -1)
             {
-                SelectNum = 1;
+                Num = 1;
             }
             if (dph == -1)
             {
-                SelectNum = 2;
+                Num = 2;
             }
             if (dph == 1)
             {
-                SelectNum = 3;
+                Num = 3;
             }
             if (dpv == 1)
             {
-                SelectNum = 4;
+                Num = 4;
             }
-            
-            
-            
-            
-            switch (SelectNum)
+
+            switch (Num)
             {
                 case 0:
                     Cursor1.SetActive(false);
@@ -53,27 +52,50 @@ public class PowerUp : MonoBehaviour
                     Cursor4.SetActive(false);
                     break;
                 case 1:
-                    //プレイヤー側でSelectNumが1の時Bを押すと選択
                     Cursor1.SetActive(true);
-                    SelectNum = 0;
+                    Cursor2.SetActive(false);
+                    Cursor3.SetActive(false);
+                    Cursor4.SetActive(false);
+                    if (dpv==0)
+                    {
+                        SelectNum = 1;
+                        Num = 0;
+                    }
                     break;
-
                 case 2:
                     Cursor2.SetActive(true);
-                    SelectNum = 0;
+                    Cursor1.SetActive(false);
+                    Cursor3.SetActive(false);
+                    Cursor4.SetActive(false);
+                    if (dph == 0)
+                    {
+                        SelectNum = 2;
+                        Num = 0;
+                    }
                     break;
-
                 case 3:
                     Cursor3.SetActive(true);
-                    SelectNum = 0;
+                    Cursor2.SetActive(false);
+                    Cursor1.SetActive(false);
+                    Cursor4.SetActive(false);
+                    if (dph == 0)
+                    {
+                        SelectNum = 3;
+                        Num = 0;
+                    }
                     break;
-
                 case 4:
                     Cursor4.SetActive(true);
-                    SelectNum = 0;
+                    Cursor2.SetActive(false);
+                    Cursor3.SetActive(false);
+                    Cursor1.SetActive(false);
+                    if (dpv == 0)
+                    {
+                        SelectNum = 4;
+                        Num = 0;
+                    }
                     break;
             }
-            Debug.Log(SelectNum);
         }
     }
 }
