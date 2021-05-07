@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     //移動
     private Vector3 Move;//移動
     bool MovePossible;//移動可能か
-    [SerializeField] float Speed;//移動量
+    [SerializeField] float Speed=8;//移動量
     private float DefaultSpeed;//初期移動量
     float moveX = 0f;
     float moveZ = 0f;
@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     [SerializeField] Text HPtext;
     [SerializeField] Text MaxHPtext;
 
+    float DeathTime=0;
+
     //攻撃
     [SerializeField] GameObject Attack1;
     [SerializeField] GameObject Attack2;
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour
 
     //必殺技
     [SerializeField] GameObject AttackSkill1;
+
+    bool AttackState = false;
 
     //強化ポイント
     public int Point;
@@ -77,6 +81,8 @@ public class Player : MonoBehaviour
     private const string key_isAttack = "isAttack";
     private const string key_isDamage = "isDamage";
     private const string key_isSkill = "isSkill";
+    private const string key_isDash = "isDash";
+    private const string key_isDeath = "isDeath";
     AnimatorClipInfo[] clipInfo;
     string clipName;
     int animatorNum;
@@ -130,10 +136,16 @@ public class Player : MonoBehaviour
         if (clipName == "Sword And Shield Attack") animatorNum = 7;
         //スキル
         if (clipName == "Sword And Shield Casting") animatorNum = 8;
+        //ダッシュ
+        if (clipName == "Standard Run") animatorNum = 9;
+        //ダッシュ攻撃
+        if (clipName == "Sword And Shield Attack2") animatorNum = 10;
 
         //攻撃中でなければ
-        if (animatorNum<4)
+        if (AttackState==false)
         {
+            
+
             //移動
             moveX = Input.GetAxis("Horizontal") * Speed;
             moveZ = Input.GetAxis("Vertical") * Speed;
@@ -155,6 +167,7 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             {
                 this.animator.SetBool(key_isRun, false);
+                this.animator.SetBool(key_isDash,false);
             }
             else
             {
@@ -163,7 +176,19 @@ public class Player : MonoBehaviour
                 {
                     transform.rotation = Quaternion.LookRotation(diff);
                 }
-                this.animator.SetBool(key_isRun, true);
+                if (Input.GetKey("joystick button 5"))
+                {
+                    this.animator.SetBool(key_isDash, true);
+                    this.animator.SetBool(key_isRun, false);
+                    Speed = DefaultSpeed+2;
+                }
+                else
+                {
+                    this.animator.SetBool(key_isRun, true);
+                    this.animator.SetBool(key_isDash, false);
+                    Speed = DefaultSpeed;
+                }
+               
             }
         }
 
@@ -180,8 +205,9 @@ public class Player : MonoBehaviour
             }
         }
 
+        
 
-        //重力
+         //重力
         Jump.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(Jump * Time.deltaTime);
 
@@ -237,6 +263,8 @@ public class Player : MonoBehaviour
                 
 
             }
+            
+
             //スキル1
             if(Skill1==true)
             {
@@ -261,6 +289,7 @@ public class Player : MonoBehaviour
                 AttackSkill1.SetActive(false);
                 particle.SetActive(false);
                 this.tag = ("Player");
+                AttackState = false;
                 break;
             case 1:
                 Attack1.SetActive(false);
@@ -272,42 +301,70 @@ public class Player : MonoBehaviour
                 this.tag = ("Player");
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
+                AttackState = false;
                 break;
             case 2:
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
+                AttackState = false;
                 break;
             case 3:
                 this.tag = ("PlayerAvert");
                 Sword.SetActive(false);
                 BackSword.SetActive(true);
+                AttackState = false;
                 break;
             case 4:
-                Attack1.SetActive(true);
                 Sword.SetActive(true);
                 BackSword.SetActive(false);
+                Attack1.SetActive(true);                
                 particle.SetActive(true);
+                AttackState = true;
                 break;
             case 5:
                 Attack2.SetActive(true);
                 Attack1.SetActive(false);
                 particle.SetActive(true);
+                AttackState = true;
                 break;
             case 6:
                 Attack3.SetActive(true);
                 Attack2.SetActive(false);
                 particle.SetActive(true);
+                AttackState = true;
                 break;
             case 7:
                 Attack4.SetActive(true);
                 Invoke("ColliderReset", 0.5f);               
                 Attack3.SetActive(false);
                 particle.SetActive(true);
+                AttackState = true;
                 break;
             case 8:
                 Sword.SetActive(true);
                 BackSword.SetActive(false);
                 AttackSkill1.SetActive(true);
+                AttackState = true;
+                break;
+            case 9:
+                Attack1.SetActive(false);
+                Attack2.SetActive(false);
+                Attack3.SetActive(false);
+                Attack4.SetActive(false);
+                AttackSkill1.SetActive(false);
+                particle.SetActive(false);
+                this.tag = ("Player");
+                Sword.SetActive(false);
+                BackSword.SetActive(true);
+                AttackState = false;
+                break;
+            case 10:
+                Sword.SetActive(true);
+                BackSword.SetActive(false);
+                Attack3.SetActive(true);
+                Attack2.SetActive(false);
+                particle.SetActive(true);
+                AttackState = true;
                 break;
         }
 
@@ -360,7 +417,14 @@ public class Player : MonoBehaviour
         //プレイヤー脂肪
         if(HP<=0)
         {
-            SceneManager.LoadScene("Ending");
+            this.animator.SetTrigger(key_isDeath);
+            DeathTime += Time.deltaTime;
+            this.tag = ("PlayerAvert");
+            if (DeathTime>2)
+            {
+                SceneManager.LoadScene("Ending");
+            }
+            
         }
 
         KillEnemy = Kill;
