@@ -1,22 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class Game : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Ending");
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:200c10438928a203c6dc184c69f683c97fee48ef08d80e381f98876e9d1fbb56
+size 424
