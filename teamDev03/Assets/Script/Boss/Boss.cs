@@ -50,7 +50,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         p = GetComponent<Player>();
-        Hp = 100;
+        Hp = 100000;
         agent = GetComponent<NavMeshAgent>();
         elapsedTime = 0;
         aiCountH = 1;
