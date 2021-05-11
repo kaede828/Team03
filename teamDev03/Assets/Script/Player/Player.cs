@@ -64,14 +64,17 @@ public class Player : MonoBehaviour
 
     //強化メニュー
     [SerializeField] GameObject PowerUpMenu;
-    [SerializeField] GameObject RedCursor;
-    [SerializeField] GameObject GreenCursor;
-    int SelectNum;
+    [SerializeField] PowerUp PowerUpScript;
+    int Select=0;
+    int count1 = 0;
+    int count3 = 0;
+    int count4 = 0;
 
     //技が使えるか
     [SerializeField] Image SkillImage;
     bool Skill1=false;
     float SkillTime=0;
+    float SkillChargeTime = 20;
 
     //アニメーション
     private Animator animator;
@@ -243,7 +246,7 @@ public class Player : MonoBehaviour
         //}      
         //スキルタイム
         
-        if(SkillTime>=20)
+        if(SkillTime>= SkillChargeTime)
         {
             Skill1 = true;
         }
@@ -252,7 +255,7 @@ public class Player : MonoBehaviour
             SkillTime += Time.deltaTime;
             Skill1 = false;
         }
-        SkillImage.fillAmount += 1.0f / 20 * Time.deltaTime;
+        SkillImage.fillAmount += 1.0f / SkillChargeTime * Time.deltaTime;
 
         //攻撃
         if (characterController.isGrounded)//地面についていたら
@@ -275,6 +278,7 @@ public class Player : MonoBehaviour
                     SkillImage.fillAmount = 0;
                 }
             }
+
            
         }
 
@@ -385,27 +389,58 @@ public class Player : MonoBehaviour
             //{
             //    Debug.Log("D Pad:" + dph + "," + dpv);
             //}
-            switch (SelectNum)
+            Select = PowerUpScript.SelectNum;
+
+            switch (Select)
             {
-                case 0:
-                    //体力上限アップ
+                case 1:
+                    Debug.Log("体力上限アップ");
+                    if (Point >= 500 && count1<10)
+                    {
+                        MaxHP += 50;
+                        HP += 50;
+                        HPBarG.fillAmount = (float)HP / MaxHP;
+                        Point -= 500;
+                        count1++;
+                    }
+                    PowerUpScript.SelectNum = 0;                               
+                    break;
+
+                case 2:
+                    Debug.Log("体力全回復");
                     if (Point >= 500)
                     {
-                        if (Input.GetKeyDown("joystick button 1"))
-                        {
-                            MaxHP += 50;
-                            HP += 50;
-                            Point -= 500;
-                        }
-                        GreenCursor.SetActive(true);
-                        RedCursor.SetActive(false);                     
+                        HP =MaxHP;
+                        HPBarG.fillAmount = (float)HP / MaxHP;
+                        Point -= 500;
                     }
-                    else
+                    PowerUpScript.SelectNum = 0;
+                    break;
+
+                case 3:
+                    Debug.Log("スキル短縮");
+                    if (Point >= 800 && count3 < 5)
                     {
-                        GreenCursor.SetActive(false);
-                        RedCursor.SetActive(true);
+                        SkillChargeTime -= 3;
+                        Point -= 800;
+                        count3++;
                     }
-                                   
+                    if(count3 >= 5)
+                    {
+                        //これ以上強化できないメッセージを出す
+                    }
+                    PowerUpScript.SelectNum = 0;
+                    break;
+
+                case 4:
+                    Debug.Log("スキル強化");
+                    if (Point >= 1500 && count4 < 3)
+                    {
+
+                        Point -= 1500;
+                        count4++;
+                    }
+                    PowerUpScript.SelectNum = 0;
                     break;
             }           
         }
