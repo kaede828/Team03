@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProBuilder.Editor",
     "references": [
@@ -17,4 +18,25 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.ProBuilder.Editor",
+    "references": [
+        "Unity.ProBuilder",
+        "Unity.ProBuilder.AssetIdRemapUtility",
+        "Unity.ProBuilder.Stl",
+        "Unity.Settings.Editor",
+        "Unity.ProBuilder.Csg"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+>>>>>>> 6cf4c9607625e2b960243c4a3d5886bc79b32e45
 }

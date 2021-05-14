@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProBuilder.Examples",
     "references": [
@@ -12,4 +13,20 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": []
+=======
+{
+    "name": "Unity.ProBuilder.Examples",
+    "references": [
+        "Unity.ProBuilder",
+        "Unity.ugui"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+>>>>>>> 6cf4c9607625e2b960243c4a3d5886bc79b32e45
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProBuilder.KdTree",
     "references": [],
@@ -9,4 +10,17 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.ProBuilder.KdTree",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": []
+>>>>>>> 6cf4c9607625e2b960243c4a3d5886bc79b32e45
 }
