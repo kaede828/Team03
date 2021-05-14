@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProGrids",
     "references": [],
@@ -5,4 +6,13 @@
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false
+=======
+{
+    "name": "Unity.ProGrids",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+>>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
 }

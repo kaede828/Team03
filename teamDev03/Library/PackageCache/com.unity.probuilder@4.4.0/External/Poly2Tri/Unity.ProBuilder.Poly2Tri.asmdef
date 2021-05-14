@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProBuilder.Poly2Tri",
     "references": [],
@@ -9,4 +10,17 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.ProBuilder.Poly2Tri",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": []
+>>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
 }
