@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 {
     "name": "Unity.Polybrush.Editor",
     "references": [
@@ -14,4 +16,40 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.Polybrush.Editor",
+    "references": [
+        "Unity.Polybrush",
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+>>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
+=======
+{
+    "name": "Unity.Polybrush.Editor",
+    "references": [
+        "Unity.Polybrush",
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+>>>>>>> main
 }
