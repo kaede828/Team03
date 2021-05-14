@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Primary Contributors:
 
   Mason Green <mason.green@gmail.com> (C++, Python)
@@ -5,4 +6,13 @@ Primary Contributors:
 
 Other Contributors:
 
+=======
+Primary Contributors:
+
+  Mason Green <mason.green@gmail.com> (C++, Python)
+  Thomas Åhlén <thahlen@gmail.com>    (Java)
+
+Other Contributors:
+
+>>>>>>> 635622b38198459bbe471fa4eb6d8d88dd5b1a76
   Michael Rickert                     (C#)

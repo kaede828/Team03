@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.Settings.Example",
     "references": [
@@ -13,4 +14,21 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.Settings.Example",
+    "references": [
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": []
+>>>>>>> 635622b38198459bbe471fa4eb6d8d88dd5b1a76
 }

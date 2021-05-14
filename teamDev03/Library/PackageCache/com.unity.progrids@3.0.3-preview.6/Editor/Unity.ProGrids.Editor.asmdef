@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.ProGrids.Editor",
     "references": [
@@ -15,4 +16,23 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": []
+=======
+{
+    "name": "Unity.ProGrids.Editor",
+    "references": [
+        "Unity.ProGrids",
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+>>>>>>> 635622b38198459bbe471fa4eb6d8d88dd5b1a76
 }
