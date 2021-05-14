@@ -1,0 +1,42 @@
+<<<<<<< HEAD
+{
+    "name": "Unity.Polybrush.Editor.Tests",
+    "references": [
+        "Unity.Polybrush",
+        "Unity.Polybrush.Editor",
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+=======
+{
+    "name": "Unity.Polybrush.Editor.Tests",
+    "references": [
+        "Unity.Polybrush",
+        "Unity.Polybrush.Editor",
+        "Unity.Settings.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+>>>>>>> 635622b38198459bbe471fa4eb6d8d88dd5b1a76
+}

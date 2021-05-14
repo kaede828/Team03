@@ -1,0 +1,48 @@
+<<<<<<< HEAD
+{
+    "name": "Unity.ProBuilder",
+    "references": [
+        "Unity.ProBuilder.Poly2Tri",
+        "Unity.ProBuilder.KdTree",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "7.1.0",
+            "define": "HDRP_7_1_0_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+=======
+{
+    "name": "Unity.ProBuilder",
+    "references": [
+        "Unity.ProBuilder.Poly2Tri",
+        "Unity.ProBuilder.KdTree",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "7.1.0",
+            "define": "HDRP_7_1_0_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+>>>>>>> 635622b38198459bbe471fa4eb6d8d88dd5b1a76
+}
