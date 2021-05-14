@@ -1,15 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Gizmo : MonoBehaviour
-{
-    public float gizmoSize = 0.3f;
-    public Color gizmoColor = Color.yellow;
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = gizmoColor;
-        Gizmos.DrawWireSphere(transform.position, gizmoSize);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6790a93954db6f5684112c4a07695745ce6cf8d0d21565c59fd6b028e41fc06a
+size 335
