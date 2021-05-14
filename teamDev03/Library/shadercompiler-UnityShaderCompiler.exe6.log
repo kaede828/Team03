@@ -1,15 +1,20 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 =======
 <<<<<<< HEAD
-Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines'
-Cmd: initializeCompiler
-Cmd: initializeCompiler
 =======
+>>>>>>> teshi
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+<<<<<<< HEAD
 
 Quitting shader compiler process
 >>>>>>> main
 >>>>>>> dcb6335ef9eb5dffcd107e818444d9f93eeed538
+=======
+Cmd: initializeCompiler
+>>>>>>> teshi
