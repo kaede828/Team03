@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "UnityEngine.TestRunner",
     "references": [],
@@ -10,4 +11,18 @@
     ],
     "autoReferenced": false,
     "defineConstraints": []
+=======
+{
+    "name": "UnityEngine.TestRunner",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": []
+>>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
 }
