@@ -1,22 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Test : MonoBehaviour
-{
-    GameObject Player;
-    Player player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Player = GameObject.Find("Player");
-        player = Player.GetComponent<Player>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        player.Point += 1;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5bb4eab6af7f77f2b68c7fc911109b86795c6d30d4b87b56a3fd65cdbdb71b2d
+size 435

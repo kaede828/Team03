@@ -1,28 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Mat : MonoBehaviour
-{
-    public Material[] _material;           // 割り当てるマテリアル.
-    private int i;
-    // Start is called before the first frame update
-    void Start()
-    {
-        i = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(State.matFlag1==false)
-        {
-            this.GetComponent<Renderer>().material = _material[0];
-        }
-
-        if (State.matFlag1)
-        {
-            this.GetComponent<Renderer>().material = _material[1];
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f11acbee05ce7efcd3ca5e88bda89b5acfb3d16cb31b014a56b7b137b682685f
+size 621

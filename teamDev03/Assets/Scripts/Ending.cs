@@ -1,28 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-public class Ending : MonoBehaviour
-{
-    [SerializeField] Text KillNum;
-    int resultKillEnemy = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        resultKillEnemy = Player.getKillEnemy();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        KillNum.text = resultKillEnemy.ToString();
-        if (Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("Title");
-        }
-
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d18bdb3af692e8a667510170fdae6da54e6729b75d083cb2c3a5e3166fd77373
+size 702
