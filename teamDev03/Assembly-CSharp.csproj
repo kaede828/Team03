@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AttackCombo.cs" />
+    <Compile Include="Assets\Player\MaxInfo.cs" />
     <Compile Include="Assets\Player\PowerUp.cs" />
     <Compile Include="Assets\Player\Skill1.cs" />
     <Compile Include="Assets\Scenes\Title\LookRotation.cs" />
