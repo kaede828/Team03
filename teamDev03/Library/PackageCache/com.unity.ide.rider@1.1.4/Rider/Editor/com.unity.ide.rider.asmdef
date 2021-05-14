@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
     "name": "Unity.Rider.Editor",
     "references": [
@@ -43,4 +44,27 @@
         }
     ]
 >>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
+=======
+{
+    "name": "Unity.Rider.Editor",
+    "references": [
+        "GUID:0acc523941302664db1f4e527237feb3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework",
+            "expression": "1.1.1",
+            "define": "TEST_FRAMEWORK"
+        }
+    ]
+>>>>>>> main
 }

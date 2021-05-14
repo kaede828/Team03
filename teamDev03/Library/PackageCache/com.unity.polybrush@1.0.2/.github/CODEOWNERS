@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Lines starting with '#' are comments.
 # Each line is a file pattern followed by one or more owners.
 
@@ -29,3 +30,19 @@
 
 *  @karl-
 >>>>>>> 20f30561a8c90934820ab9545c37f2c770176863
+=======
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in the repo.
+# *       @defunkt
+
+# Order is important. The last matching pattern has the most precedence.
+# So if a pull request only touches javascript files, only these owners
+# will be requested to review.
+# *.js    @octocat @github/js
+
+# You can also use email addresses if you prefer.
+
+*  @karl-
+>>>>>>> main
