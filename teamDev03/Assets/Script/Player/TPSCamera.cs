@@ -1,26 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TPSCamera : MonoBehaviour
-{
-    public GameObject Player;//プレイヤー
-    public Vector3 Default = new Vector3(0, 3f, -9f);//プレヤーとの距離
-
-    void Update()
-    {
-
-        //カメラをプレイヤーの場所に移動
-        transform.position = Player.transform.position;
-       
-
-        //プレイヤーの向いている方向にカメラを向ける
-        transform.rotation = Player.transform.rotation;
-
-        //位置を調整
-        transform.Translate(Default);
-        //プレイヤー方向にカメラを向ける
-        transform.LookAt(Player.transform);
-    }
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6d70c699d96761a8f7e53ddd731eb4cccdefe656ecce03fdaa341f1d633a2d6d
+size 702

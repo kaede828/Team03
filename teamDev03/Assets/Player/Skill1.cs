@@ -1,28 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Skill1 : MonoBehaviour
-{
-    [SerializeField] float Skill1Time=1.2f;
-    [SerializeField] float elapsedTime;
-    // Start is called before the first frame update
-    void OnEnable()
-    {   
-        GetComponent<BoxCollider>().enabled = false;
-    }
-    void OnDisable()
-    {
-        GetComponent<BoxCollider>().enabled = false;
-        elapsedTime = 0;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime > Skill1Time  )
-        {
-            GetComponent<BoxCollider>().enabled = true;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9bc0a1aaa1c19ba94823ea4f5f2bc969917e4e3cdaaf09ff5d11d2d13b23bc07
+size 683
