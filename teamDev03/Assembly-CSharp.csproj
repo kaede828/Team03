@@ -106,6 +106,7 @@
     <None Include="Assets\Zombie\Materials\Toon.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\Shader\cristal2.shader" />
     <None Include="Assets\Shader\cristal.shader" />
     <None Include="Assets\UnityChan\Voice\unity-chan_voice_list.txt" />
     <None Include="Assets\Shader\dis.shader" />
