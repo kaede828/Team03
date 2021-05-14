@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:15b9df0f4c34aaa0f99586e400fe840329552eea670432b72f07c8d4230718e3
-size 857
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1ca63a91b17724bbd99c8fa67e0180, type: 3}
+  m_Name: Default Material Palette
+  m_EditorClassIdentifier: 
+  array:
+  - {fileID: 2100000, guid: 1e341888127ba214b95cea19cb7a3abd, type: 2}
+  - {fileID: 2100000, guid: ba400a74566fcd9489b7b1b80fd5ddc2, type: 2}
+  - {fileID: 2100000, guid: c52cbd1c00db1f84695af9eddde57c32, type: 2}
+  - {fileID: 2100000, guid: d7e58b92734a2154b94faaf8fe82b75d, type: 2}
+  - {fileID: 2100000, guid: 9e92ad04addae844eab47c01d9890e3a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
